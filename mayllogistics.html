@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mayl Logistics Client Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* =================== General Styles =================== */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #eef2f7;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  padding: 30px 40px;
+}
+
+h2, h3, h4 {
+  text-align: center;
+}
+
+h2 { color: #333; margin-bottom: 25px; font-size: 26px; }
+h3, h4 { color: #25D366; margin-bottom: 20px; }
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 12px 12px 12px 0;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  background: transparent;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-bottom-color: #25D366;
+}
+
+label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  color: #777;
+  font-weight: normal;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label,
+textarea:focus ~ label,
+textarea:not(:placeholder-shown) ~ label {
+  top: -10px;
+  font-size: 12px;
+  color: #25D366;
+}
+
+textarea { resize: vertical; min-height: 80px; }
+
+button, a.button {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  background: #25D366;
+  transition: 0.3s;
+  font-size: 18px;
+  margin-top:10px;
+}
+
+button:hover, a.button:hover { background: #1ebe5d; }
+
+/* =================== Card Styles =================== */
+.card {
+  max-width:700px;
+  margin:20px auto;
+  background:#fff;
+  padding:20px 25px;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  font-size:16px;
+  color:#333;
+  line-height:1.6;
+}
+
+.review {
+  margin-bottom:15px;
+  padding:15px;
+  border-left:4px solid #25D366;
+  background:#f9f9f9;
+  border-radius:5px;
+}
+
+/* =================== Modal Styles =================== */
+#successModal, #thankYouModal {
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.5);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content {
+  background:#fff;
+  padding:30px 25px;
+  border-radius:12px;
+  max-width:400px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px){
+  .container { padding:20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Mayl Logistics Client Form</h2>
+
+  <!-- Open Account Button -->
+  <button id="openAccountBtn">Open Account</button>
+
+  <!-- Form Section (Initially Hidden) -->
+  <div id="formSection" style="display:none; margin-top:20px;">
+    <div class="form-group"><input id="company" placeholder=" " required><label>Company Name</label></div>
+    <div class="form-group"><input id="office" placeholder=" " required><label>Office Address</label></div>
+    <div class="form-group"><input id="products" placeholder=" " required><label>Products</label></div>
+    <div class="form-group"><input id="authname" placeholder=" " required><label>Authorize Person Name</label></div>
+    <div class="form-group"><input id="authcell" placeholder=" " required><label>Authorize Person Cell#</label></div>
+    <div class="form-group"><input id="email" type="email" placeholder=" " required><label>Email Address</label></div>
+    <div class="form-group"><input id="cnic" placeholder=" " required><label>CNIC Number</label></div>
+    <div class="form-group"><input id="iban" placeholder=" " required><label>IBAN</label></div>
+    <div class="form-group"><input id="acctitle" placeholder=" " required><label>Bank Account Title</label></div>
+    <div class="form-group"><input id="bank" placeholder=" " required><label>Bank Name</label></div>
+    <div class="form-group"><input id="website" placeholder=" "><label>Website</label></div>
+    <div class="form-group"><input id="pickup" placeholder=" " required><label>Pickup Address</label></div>
+    <div class="form-group"><input id="contact" placeholder=" " required><label>Contact Person for Daily Pickup</label></div>
+    <div class="form-group"><input id="ntn" placeholder=" "><label>NTN Number</label></div>
+    <button onclick="sendWA()">Submit & Send WhatsApp</button>
+  </div>
+</div>
+
+<!-- =================== Footer / Description =================== -->
+<div class="card">
+  <h3>About Mayl Logistics Courier</h3>
+  <p><strong>Mayl Logistics Courier</strong> ek trusted aur reliable courier company hai jo <strong>0 hidden charges</strong> ke sath <strong>poore Lahore</strong> me service provide karti hai.</p>
+  <ul>
+    <li><strong>Delivery ratio:</strong> 80%+</li>
+    <li><strong>Fake returns:</strong> Guaranteed nahi</li>
+    <li><strong>Rates:</strong> 1kg tak sirf 125 rupees, 1kg se zyada weight par 35 rupees per kg</li>
+    <li><strong>Tax:</strong> sirf government ka 4%, koi extra ya hidden charges nahi</li>
+  </ul>
+  <p><strong>Mayl Logistics</strong> aapke business ke liye ek <strong>safe, honest aur profitable delivery solution</strong> hai.</p>
+</div>
+
+<!-- Office Location -->
+<div class="card" style="text-align:center; background:#f0f8ff;">
+  <h4>Office Location</h4>
+  <p>Click on this 👇🏻 button for office location</p>
+  <a href="https://maps.app.goo.gl/6SDpJqCGP24yoCmC7" target="_blank" class="button">View on Google Maps</a>
+</div>
+
+<!-- Customer Reviews -->
+<div class="card">
+  <h3>Customer Reviews</h3>
+  <div class="review"><p>"Mayl Logistics ka service bohot reliable hai. Har parcel time par deliver hota hai aur charges transparent hain." – <strong>Ali R.</strong></p></div>
+  <div class="review"><p>"Courier ke liye Mayl Logistics best choice hai. Staff friendly aur helpful hai." – <strong>Sarah K.</strong></p></div>
+  <div class="review"><p>"Affordable rates aur fast delivery! Mayl Logistics hamare business ke liye perfect solution hai." – <strong>Hassan M.</strong></p></div>
+</div>
+
+<!-- =================== Modals =================== -->
+<div id="successModal">
+  <div class="modal-content">
+    <h3>Success!</h3>
+    <p>Form successfully submitted. WhatsApp message is ready to send.</p>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<div id="thankYouModal">
+  <div class="modal-content">
+    <h3>Thank You!</h3>
+    <p>Thank you for submitting the form. We will contact you soon.</p>
+    <button onclick="closeThankYou()">OK</button>
+  </div>
+</div>
+
+<!-- =================== Script =================== -->
+<script>
+// =================== Open Account Button ===================
+document.getElementById('openAccountBtn').addEventListener('click', function(){
+  var formDiv = document.getElementById('formSection');
+  if(formDiv.style.display === 'none'){
+    formDiv.style.display = 'block';
+    formDiv.scrollIntoView({behavior: "smooth"});
+    this.style.display = 'none';
+  }
+});
+
+// =================== Auto-save Draft ===================
+const fields = ['company','office','products','authname','authcell','email','cnic','iban','acctitle','bank','website','pickup','contact','ntn'];
+
+// Load saved data
+fields.forEach(f => {
+  if(localStorage.getItem(f)) { document.getElementById(f).value = localStorage.getItem(f); }
+  document.getElementById(f).addEventListener('input', function(){ localStorage.setItem(f, this.value); });
+});
+
+// =================== Modal functions ===================
+function showModal() { document.getElementById('successModal').style.display = 'flex'; }
+function closeModal() { document.getElementById('successModal').style.display = 'none'; showThankYou(); }
+function showThankYou() { document.getElementById('thankYouModal').style.display = 'flex'; }
+function closeThankYou() { document.getElementById('thankYouModal').style.display = 'none'; }
+
+// =================== WhatsApp submit ===================
+function sendWA() {
+  for(var i=0;i<fields.length;i++){
+    var field = document.getElementById(fields[i]);
+    if(['website','ntn'].indexOf(fields[i]) === -1 && field.value.trim()===''){
+      alert('Barah-e-karam tamam zaroori fields pur karein!');
+      field.focus();
+      return;
+    }
+  }
+
+  var text =
+"Company Name: " + document.getElementById('company').value + "%0A" +
+"Office Address: " + document.getElementById('office').value + "%0A" +
+"Products: " + document.getElementById('products').value + "%0A" +
+"Authorize Person Name: " + document.getElementById('authname').value + "%0A" +
+"Authorize Person Cell#: " + document.getElementById('authcell').value + "%0A" +
+"Email Address: " + document.getElementById('email').value + "%0A" +
+"CNIC Number: " + document.getElementById('cnic').value + "%0A" +
+"IBAN: " + document.getElementById('iban').value + "%0A" +
+"Bank Account Title: " + document.getElementById('acctitle').value + "%0A" +
+"Bank Name: " + document.getElementById('bank').value + "%0A" +
+"Website: " + (document.getElementById('website').value||'N/A') + "%0A" +
+"Pickup Address: " + document.getElementById('pickup').value + "%0A" +
+"Daily Pickup Contact Person: " + document.getElementById('contact').value + "%0A" +
+"NTN Number: " + (document.getElementById('ntn').value||'N/A') + "%0A%0A" +
+"--- Company Info ---%0A" +
+"Mayl Logistics Courier ek trusted aur reliable courier company hai jo 0 hidden charges ke sath all-over Lahore me service provide karti hai. Hamari delivery ratio 80%+ hai, no fake returns ki guarantee ke sath. Hum affordable rates offer karte hain jahan 1kg tak sirf 125 rupees mein parcel deliver hota hai, aur 1kg se zyada weight par sirf 35 rupees per kg charge kiya jata hai. Is ke ilawa hum sirf government ka 4% tax charge karte hain, koi extra ya hidden tax nahi. Mayl Logistics aapke business ke liye ek safe, honest aur profitable delivery solution hai.";
+
+  var number = "923156329598"; // Apna WhatsApp number yahan lagayein
+
+  console.log("Form submitted: WhatsApp ready"); // Analytics
+
+  showModal();
+
+  setTimeout(function(){
+    window.open("https://wa.me/" + number + "?text=" + text, "_blank");
+  }, 500);
+
+  fields.forEach(f => localStorage.removeItem(f));
+}
+</script>
+
+</body>
+</html>
