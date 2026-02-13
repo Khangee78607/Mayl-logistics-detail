@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayl Logistics</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins', sans-serif;background:#f4f4f4;color:#333;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}/* Hero */ header{background:#0d6efd;color:white;text-align:center;padding:120px 20px;position:relative;overflow:hidden;} header h1{font-size:48px;margin-bottom:10px;opacity:0;transform:translateY(-20px);transition:all 1s ease;} header p{font-size:20px;margin-bottom:20px;opacity:0;transform:translateY(20px);transition:all 1s ease 0.5s;} header .btn{background:white;color:#0d6efd;padding:12px 30px;border-radius:5px;font-weight:600;transition:0.3s;opacity:0;transform:translateY(20px);transition:all 1s ease 1s;} header .btn:hover{background:#e0e0e0;}
+
+/* Sections */ section{padding:80px 20px;max-width:1200px;margin:0 auto;background:white;margin-bottom:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);opacity:0;transform:translateY(50px);transition:all 1s ease;} section h2{text-align:center;font-size:32px;margin-bottom:30px;color:#0d6efd;} section p, section li{font-size:18px;line-height:1.6;margin-bottom:15px;}
+
+/* Trust Badges */ #badges{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;} #badges div{background:#f0f8ff;padding:15px 25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.1);font-weight:600;}
+
+/* Stats */ #stats{display:flex;justify-content:space-around;flex-wrap:wrap;gap:30px;text-align:center;} #stats div{background:#e6f2ff;padding:20px 30px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.1);flex:1 1 200px;opacity:0;transform:translateY(50px);transition:all 1s ease;} #stats div h3{font-size:28px;color:#0d6efd;margin-bottom:10px;}
+
+/* Testimonials */ #reviews{position:relative;overflow:hidden;} #reviews ul{display:flex;transition:transform 0.5s ease;} #reviews li{min-width:300px;margin-right:20px;background:#f0f8ff;padding:20px;border-radius:10px;box-shadow:0 4px 8px rgba(0,0,0,0.1);font-size:17px;flex-shrink:0;opacity:0;transform:translateY(50px);transition:all 0.5s ease;} #reviews li strong{color:#0d6efd;} #reviews-buttons{display:flex;justify-content:center;margin-top:20px;gap:15px;} #reviews-buttons button{padding:10px 20px;border:none;border-radius:5px;background:#0d6efd;color:white;cursor:pointer;transition:0.3s;} #reviews-buttons button:hover{background:#074db3;}
+
+/* WhatsApp Form */ #whatsapp-form input, #whatsapp-form button{width:100%;padding:12px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;font-size:16px;} #whatsapp-form button{background:#25D366;color:white;border:none;font-weight:600;cursor:pointer;} #whatsapp-form button:hover{background:#1da851;}
+
+/* FAQ */ #faq div{margin-bottom:15px;} #faq div h3{cursor:pointer;background:#e6f2ff;padding:12px;border-radius:5px;} #faq div p{display:none;padding:10px 15px;background:#f0f8ff;border-radius:5px;margin-top:5px;}
+
+/* Contact */ #contact p{margin-bottom:10px;}
+
+/* WhatsApp Floating Button */ .whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px;border-radius:50px;box-shadow:0 4px 10px rgba(0,0,0,0.3);text-decoration:none;font-weight:600;z-index:1000;transition:0.3s;} .whatsapp-float:hover{transform:scale(1.1);}
+
+/* Footer */ footer{text-align:center;padding:30px;background:#222;color:white;font-size:16px;}
+
+/* Responsive */ @media(max-width:768px){header h1{font-size:36px;} header p{font-size:18px;} #stats{flex-direction:column;} #reviews ul{flex-direction:column;} #badges{flex-direction:column;} } </style>
+
+</head>
+<body><header>
+  <h1 id="hero-title">Fast & Secure Delivery Across Lahore</h1>
+  <p>Fast, Secure & Transparent Courier Service in Lahore</p>
+  <a href="#whatsapp-form" class="btn">رابطہ کریں</a>
+</header><section id="about">
+  <h2>About Us</h2>
+  <p>Assalam o Alaikum Sir،</p>
+  <p>If you are facing <strong>courier issues, fake returns or hidden charges</strong> in Lahore, <strong>Mayl Logistics</strong> is your best solution.</p>
+  <p>We are a <strong>professional and result-oriented courier company</strong> providing <strong>fast, secure and transparent deliveries</strong> across Lahore — without any hidden costs.</p>
+</section><section id="badges">
+  <div>✅ 100% Safe & Secure</div>
+  <div>🏆 Trusted by 7+ Major Brands</div>
+  <div>📦 Professional & Verified</div>
+</section><section id="stats">
+  <div><h3 class="counter" data-target="5000">0</h3><p>Deliveries Completed</p></div>
+  <div><h3 class="counter" data-target="99">0</h3><p>On-Time Delivery Rate (%)</p></div>
+  <div><h3 class="counter" data-target="0">0</h3><p>Hidden Charges Reported</p></div>
+</section><section id="brands">
+  <h2>Brands We Work With</h2>
+  <ul>
+    <li>Baby Planet</li>
+    <li>Floure</li>
+    <li>Saffrin Skin Care</li>
+    <li>The Herbal</li>
+    <li>Mini Street</li>
+    <li>Elegant Savvy</li>
+    <li>FW Organics</li>
+  </ul>
+</section><section id="rates">
+  <h2>Rate List</h2>
+  <table>
+    <tr><th>Weight</th><th>Price</th></tr>
+    <tr><td>Under 1 KG</td><td>Rs. 125</td></tr>
+    <tr><td>Above 1 KG</td><td>Rs. 35 per additional KG</td></tr>
+  </table>
+</section><section id="reviews">
+  <h2>Customer Reviews</h2>
+  <ul id="reviews-list">
+    <li><strong>Baby Planet:</strong> "Mayl Logistics has been amazing! Fast delivery and no hidden charges. Highly recommended."</li>
+    <li><strong>Floure:</strong> "Very professional service. Our shipments are always on-time and safe."</li>
+    <li><strong>Saffrin Skin Care:</strong> "Transparent billing and reliable delivery. We trust them 100%."</li>
+    <li><strong>The Herbal:</strong> "Excellent courier company! Makes our logistics easy and stress-free."</li>
+    <li><strong>Mini Street:</strong> "Friendly staff and quick service. Our orders reach customers perfectly."</li>
+    <li><strong>Elegant Savvy:</strong> "Mayl Logistics always delivers on time. Highly professional team."</li>
+    <li><strong>FW Organics:</strong> "Safe and secure delivery every time. We highly recommend Mayl Logistics."</li>
+  </ul>
+  <div id="reviews-buttons">
+    <button onclick="slideReviews(-1)">Prev</button>
+    <button onclick="slideReviews(1)">Next</button>
+  </div>
+</section><section id="whatsapp-form">
+  <h2>Apply via WhatsApp</h2>
+  <form id="waForm">
+    <input type="text" id="company" placeholder="Company Name *" required>
+    <input type="text" id="address" placeholder="Office Address">
+    <input type="text" id="products" placeholder="Products">
+    <input type="text" id="authName" placeholder="Authorize Person Name *" required>
+    <input type="text" id="authCell" placeholder="Authorize Person Cell# *" required>
+    <input type="email" id="email" placeholder="Email Address *" required>
+    <input type="text" id="cnic" placeholder="CNIC Number">
+    <input type="text" id="iban" placeholder="IBAN *" required>
+    <input type="text" id="bankTitle" placeholder="Bank Account Title *" required>
+    <input type="text" id="bankName" placeholder="Bank Name *" required>
+    <input type="text" id="website" placeholder="Website">
+    <input type="text" id="pickup" placeholder="Pickup Address *" required>
+    <input type="text" id="pickupContact" placeholder="Contact Person for Daily Pickup">
+    <input type="text" id="ntn" placeholder="NTN">
+    <button type="submit">Send on WhatsApp</button>
+  </form>
+</section><section id="faq">
+  <h2>FAQs</h2>
+  <div>
+    <h3>Are there any hidden charges?</h3>
+    <p>No, our pricing is fully transparent with no hidden charges.</p>
+  </div>
+  <div>
+    <h3>What is the delivery time?</h3>
+    <p>Within Lahore, deliveries are completed in 24–48 hours.</p>
+  </div>
+  <div>
+    <h3>Do you handle fake returns?</h3>
+    <p>We guarantee no fake returns. All shipments are verified and secure.</p>
+  </div>
+</section><section id="offer">
+  <h2>Limited Time Offer</h2>
+  <p>Open your courier account today & get first 10 deliveries at discounted rate! Act now!</p>
+</section><section id="contact">
+  <h2>Contact</h2>
+  <p>Phone: 03298162144</p>
+  <p>Email: info@mayllogistics.com</p>
+  <div style="text-align:center;margin-top:20px;">
+    <a href="https://wa.me/923298162144" target="_blank" style="display:inline-block;background:#25D366;color:white;padding:12px 25px;border-radius:50px;font-weight:600;font-size:16px;text-decoration:none;transition:0.3s;">WhatsApp پر رابطہ کریں</a>
+  </div>
+</section><footer>
+  <p>© 2026 Mayl Logistics. All Rights Reserved.</p>
+</footer><a href="https://wa.me/923298162144" target="_blank" class="whatsapp-float">💬 WhatsApp پر بات کریں</a>
+
+<script>
+// Hero fade-in
+window.addEventListener('DOMContentLoaded', ()=>{
+  const header = document.querySelector('header');
+  header.querySelector('h1').style.opacity='1';
+  header.querySelector('h1').style.transform='translateY(0)';
+  header.querySelector('p').style.opacity='1';
+  header.querySelector('p').style.transform='translateY(0)';
+  header.querySelector('.btn').style.opacity='1';
+  header.querySelector('.btn').style.transform='translateY(0)';
+});
+
+// Scroll fade-in
+const sections = document.querySelectorAll('section');
+window.addEventListener('scroll',()=>{
+  const triggerBottom = window.innerHeight * 0.85;
+  sections.forEach(section=>{
+    const top = section.getBoundingClientRect().top;
+    if(top<triggerBottom){
+      section.style.opacity='1';
+      section.style.transform='translateY(0)';
+    }
+  });
+  const statsItems = document.querySelectorAll('#stats div');
+  statsItems.forEach(item=>{const top=item.getBoundingClientRect().top;if(top<triggerBottom){item.style.opacity='1';item.style.transform='translateY(0)';}});
+  const reviewsItems = document.querySelectorAll('#reviews li');
+  reviewsItems.forEach(item=>{const top=item.getBoundingClientRect().top;if(top<triggerBottom){item.style.opacity='1';item.style.transform='translateY(0)';}});
+
+  // Animate counters
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const top = counter.getBoundingClientRect().top;
+    if(top<triggerBottom && !counter.classList.contains('counted')){
+      counter.classList.add('counted');
+      let target = +counter.getAttribute('data-target');
+      let count = 0;
+      let increment = target / 200;
+      const updateCounter = () => {
+        count += increment;
+        if(count<target){
+          counter.innerText = Math.ceil(count);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCounter();
+    }
+  });
+});
+
+// WhatsApp Form
+const waForm = document.getElementById('waForm');
+waForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const fields = ['company','address','products','authName','authCell','email','cnic','iban','bankTitle','bankName','website','pickup','pickupContact','ntn'];
+  let message = 'New Application for Mayl Logistics:\n\n';
+  fields.forEach(id => { message += document.getElementById(id).placeholder.split(' *')[0] + ': ' + document.getElementById(id).value + '\n'; });
+  window.open('https://wa.me/923298162144?text=' + encodeURIComponent(message),'_blank');
+});
+
+// FAQ toggle
+const faqItems = document.querySelectorAll('#faq div');
+faqItems.forEach(item => {item.querySelector('h3').addEventListener('click', ()=>{const p = item.querySelector('p');p.style.display = p.style.display==='block'?'none':'block';});});
+
+// Testimonials slider
+let slideIndex = 0;
+function slideReviews(n){
+  const ul = document.getElementById('reviews-list');
+  const items = ul.children.length;
+  slideIndex += n;
+  if(slideIndex < 0) slideIndex = 0;
+  if(slideIndex > items-1) slideIndex = items-1;
+  ul.style.transform = `translateX(${-slideIndex*320}px)`;
+}
+</script></body>
+</html>
