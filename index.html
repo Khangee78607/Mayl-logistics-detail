@@ -1,292 +1,106 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Mayl Logistics</title>
 
+<!-- Fonts & AOS CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-
 body{background:#f5f7fb;color:#333;}
-
-header{
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-color:white;
-padding:90px 20px;
-text-align:center;
-}
-
+header{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:white;padding:60px 20px;text-align:center;}
 .logo{width:120px;margin-bottom:20px;}
-
 header h1{font-size:46px;margin-bottom:10px;}
-
 header p{font-size:18px;}
-
-.login-btn{
-display:inline-block;
-margin-top:25px;
-padding:12px 30px;
-background:#00c896;
-color:white;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:70px 20px;
-}
-
-h2{
-text-align:center;
-margin-bottom:40px;
-font-size:34px;
-color:#0f2027;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.08);
-transition:.3s;
-}
-
-.card:hover{transform:translateY(-8px);}
-
-.process{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.step{
-background:white;
-padding:20px;
-border-radius:10px;
-text-align:center;
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-background:white;
-box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-
-th,td{
-padding:15px;
-border-bottom:1px solid #eee;
-text-align:center;
-}
-
-th{
-background:#203a43;
-color:white;
-}
-
-.brands{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
-}
-
-.brand{
-background:white;
-padding:20px;
-border-radius:8px;
-text-align:center;
-box-shadow:0 8px 18px rgba(0,0,0,0.08);
-}
-
-.reviews{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.review{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 8px 18px rgba(0,0,0,0.08);
-}
-
+.login-btn{display:inline-block;margin-top:25px;padding:12px 30px;background:#00c896;color:white;border-radius:30px;text-decoration:none;font-weight:600;}
+.container{max-width:1200px;margin:auto;padding:70px 20px;}
+h2{text-align:center;margin-bottom:40px;font-size:34px;color:#0f2027;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.card{background:white;padding:25px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:.3s;text-align:center;}
+.card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(0,0,0,0.15);}
+.process{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.step{background:white;padding:20px;border-radius:10px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+table{width:100%;border-collapse:collapse;background:white;box-shadow:0 10px 20px rgba(0,0,0,0.08);overflow-x:auto;display:block;}
+th,td{padding:15px;border-bottom:1px solid #eee;text-align:center;}
+th{background:#203a43;color:white;}
+.brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;}
+.brand{background:white;padding:20px;border-radius:8px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,0.08);}
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+.review{background:white;padding:20px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,0.08);}
 .contact{text-align:center;}
-
 .contact p{margin:10px 0;font-size:18px;}
-
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25D366;
-color:white;
-padding:15px 20px;
-border-radius:50px;
-font-size:18px;
-text-decoration:none;
-box-shadow:0 10px 20px rgba(0,0,0,0.2);
-}
-
-footer{
-background:#0f2027;
-color:white;
-text-align:center;
-padding:20px;
-}
-
+.whatsapp{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;font-size:18px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+footer{background:#0f2027;color:white;text-align:center;padding:20px;}
+input,button{outline:none;font-family:'Poppins',sans-serif;margin:5px 0;padding:12px;border-radius:8px;border:1px solid #ccc;width:100%;}
+button{cursor:pointer;background:#00c896;color:white;font-weight:600;border:none;transition:.3s;}
+button:hover{background:#00b07f;}
 </style>
-
 </head>
-
 <body>
 
+<!-- Header -->
 <header data-aos="fade-down">
-
 <img src="./logo.jpeg" class="logo">
-
 <h1>Mayl Logistics</h1>
-
 <p>Professional, Transparent & Result-Oriented Courier Solutions</p>
-
 <a href="https://mayllogistics.com/home" class="login-btn">Client Login</a>
-
 </header>
 
-
+<!-- Company Profile -->
 <section class="container" data-aos="fade-up">
-
 <h2>Company Profile</h2>
-
 <p style="text-align:center;max-width:850px;margin:auto;">
 Mayl Logistics is a fully customized courier company operating across Lahore.
 We provide secure, fast and transparent delivery services while minimizing
 returns and maximizing delivery success.
 </p>
-
 </section>
 
-
+<!-- Why Businesses Choose Us -->
 <section class="container">
-
 <h2 data-aos="fade-up">Why Businesses Choose Us</h2>
-
 <div class="cards">
-
-<div class="card" data-aos="zoom-in">
-<h3>85%+ Delivery Ratio</h3>
-<p>High success delivery rate.</p>
+<div class="card" data-aos="zoom-in"><h3>85%+ Delivery Ratio</h3><p>High success delivery rate.</p></div>
+<div class="card" data-aos="zoom-in"><h3>No Fake Returns</h3><p>Transparent courier operations.</p></div>
+<div class="card" data-aos="zoom-in"><h3>Next Day Delivery</h3><p>Fast delivery attempts.</p></div>
+<div class="card" data-aos="zoom-in"><h3>Daily Payments</h3><p>No payment delays.</p></div>
 </div>
-
-<div class="card" data-aos="zoom-in">
-<h3>No Fake Returns</h3>
-<p>Transparent courier operations.</p>
-</div>
-
-<div class="card" data-aos="zoom-in">
-<h3>Next Day Delivery</h3>
-<p>Fast delivery attempts.</p>
-</div>
-
-<div class="card" data-aos="zoom-in">
-<h3>Daily Payments</h3>
-<p>No payment delays.</p>
-</div>
-
-</div>
-
 </section>
 
-
+<!-- Operational Process -->
 <section class="container">
-
 <h2 data-aos="fade-up">Operational Process</h2>
-
 <div class="process">
-
 <div class="step" data-aos="fade-right">Order Confirmation</div>
 <div class="step" data-aos="fade-right">Parcel Pickup</div>
 <div class="step" data-aos="fade-right">Next Day Delivery</div>
 <div class="step" data-aos="fade-right">CNA / CNE Follow Up</div>
 <div class="step" data-aos="fade-right">Delivery Confirmation</div>
 <div class="step" data-aos="fade-right">Daily Payment Transfer</div>
-
 </div>
-
 </section>
 
-
+<!-- Competitive Comparison -->
 <section class="container">
-
 <h2 data-aos="fade-up">Competitive Comparison</h2>
-
 <table data-aos="zoom-in">
-
-<tr>
-<th>Feature</th>
-<th>Mayl Logistics</th>
-<th>Typical Courier</th>
-</tr>
-
-<tr>
-<td>Fake Returns</td>
-<td>No</td>
-<td>Possible</td>
-</tr>
-
-<tr>
-<td>Delivery Attempts</td>
-<td>5 CNA / 3 CNE</td>
-<td>2-3 Attempts</td>
-</tr>
-
-<tr>
-<td>Payment Cycle</td>
-<td>Daily</td>
-<td>3-5 Days</td>
-</tr>
-
-<tr>
-<td>Billing Transparency</td>
-<td>100%</td>
-<td>Limited</td>
-</tr>
-
-<tr>
-<td>Tax</td>
-<td>4% Government Tax</td>
-<td>Hidden / GST</td>
-</tr>
-
+<tr><th>Feature</th><th>Mayl Logistics</th><th>Typical Courier</th></tr>
+<tr><td>Fake Returns</td><td>No</td><td>Possible</td></tr>
+<tr><td>Delivery Attempts</td><td>5 CNA / 3 CNE</td><td>2-3 Attempts</td></tr>
+<tr><td>Payment Cycle</td><td>Daily</td><td>3-5 Days</td></tr>
+<tr><td>Billing Transparency</td><td>100%</td><td>Limited</td></tr>
+<tr><td>Tax</td><td>4% Government Tax</td><td>Hidden / GST</td></tr>
 </table>
-
 </section>
 
-
+<!-- Brands -->
 <section class="container">
-
 <h2 data-aos="fade-up">Brands Working With Us</h2>
-
 <div class="brands">
-
 <div class="brand" data-aos="zoom-in">Baby Planet</div>
 <div class="brand" data-aos="zoom-in">Floure</div>
 <div class="brand" data-aos="zoom-in">Saffrin Skin Care</div>
@@ -294,68 +108,86 @@ returns and maximizing delivery success.
 <div class="brand" data-aos="zoom-in">Mini Street</div>
 <div class="brand" data-aos="zoom-in">Elegant Savvy</div>
 <div class="brand" data-aos="zoom-in">FW Organics</div>
-
 </div>
-
 </section>
 
+<!-- Parcel Delivery Rate List -->
+<section class="container" data-aos="fade-up">
+<h2>Parcel Delivery Rates</h2>
+<div class="cards" style="margin-top:30px;">
+<div class="card" data-aos="zoom-in">
+<h3><span style="font-size:22px;">&#128230;</span> Up to 1 KG</h3>
+<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 140 / Parcel</p>
+<p>Includes standard courier services & 4% government tax.</p>
+</div>
+<div class="card" data-aos="zoom-in">
+<h3><span style="font-size:22px;">&#128230;</span> Above 1 KG</h3>
+<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 35 / KG (additional)</p>
+<p>Calculated per extra kg over 1 KG. Transparent billing guaranteed.</p>
+</div>
+</div>
+</section>
 
+<!-- Customer Reviews -->
 <section class="container">
-
 <h2 data-aos="fade-up">Customer Reviews</h2>
-
 <div class="reviews">
-
-<div class="review" data-aos="flip-left">
-<h4>Ahmed Khan ⭐⭐⭐⭐⭐</h4>
-<p>Delivery ratio bohat acha hai. Fake returns bilkul nahi.</p>
+<div class="review" data-aos="flip-left"><h4>Ahmed Khan ⭐⭐⭐⭐⭐</h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi.</p></div>
+<div class="review" data-aos="flip-left"><h4>Usman Ali ⭐⭐⭐⭐⭐</h4><p>Payment daily milti hai. Best courier experience.</p></div>
+<div class="review" data-aos="flip-left"><h4>Hamza Store ⭐⭐⭐⭐⭐</h4><p>Shopify store ke liye perfect courier service.</p></div>
 </div>
-
-<div class="review" data-aos="flip-left">
-<h4>Usman Ali ⭐⭐⭐⭐⭐</h4>
-<p>Payment daily milti hai. Best courier experience.</p>
-</div>
-
-<div class="review" data-aos="flip-left">
-<h4>Hamza Store ⭐⭐⭐⭐⭐</h4>
-<p>Shopify store ke liye perfect courier service.</p>
-</div>
-
-</div>
-
 </section>
 
+<!-- COD Account Opening Form -->
+<section class="container" data-aos="fade-up">
+<h2>Open Your COD Account</h2>
+<form id="codForm" style="max-width:700px;margin:auto;margin-top:20px;">
+<input type="text" name="company" placeholder="Company Name" required>
+<input type="text" name="officeAddress" placeholder="Office Address" required>
+<input type="text" name="authPerson" placeholder="Authorize Person Name" required>
+<input type="tel" name="authCell" placeholder="Authorize Person Cell#" required>
+<input type="email" name="email" placeholder="Email Address" required>
+<input type="text" name="cnic" placeholder="CNIC Number" required>
+<input type="text" name="iban" placeholder="IBAN" required>
+<input type="text" name="accountTitle" placeholder="Bank Account Title" required>
+<input type="text" name="bankName" placeholder="Bank Name" required>
+<input type="url" name="website" placeholder="Website" required>
+<input type="text" name="pickupAddress" placeholder="Pickup Address" required>
+<input type="text" name="dailyPickup" placeholder="Contact Person for Daily Pickup" required>
+<input type="text" name="ntn" placeholder="NTN" required>
+<button type="submit">Submit via WhatsApp</button>
+</form>
+</section>
 
+<!-- Contact Section -->
 <section class="container contact" data-aos="fade-up">
-
 <h2>Contact</h2>
-
 <p><b>Phone:</b> 03298162144</p>
-
 <p><b>Email:</b> mayllogisticsofficial@gmail.com</p>
-
+<p><b>Office Location:</b> <a href="https://maps.app.goo.gl/QthfRz4fKqa5pFRf7" target="_blank">View on Google Maps</a></p>
 </section>
 
+<!-- WhatsApp Button -->
+<a class="whatsapp" href="https://wa.me/923298162144" target="_blank">WhatsApp</a>
 
-<a class="whatsapp" href="https://wa.me/923298162144" target="_blank">
-WhatsApp
-</a>
+<!-- Footer -->
+<footer>© 2026 Mayl Logistics | All Rights Reserved</footer>
 
-
-<footer>
-
-© 2026 Mayl Logistics | All Rights Reserved
-
-</footer>
-
-
+<!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script>
 AOS.init({duration:1000});
+
+// COD Form WhatsApp submit
+document.getElementById('codForm').addEventListener('submit', function(e){
+e.preventDefault();
+let form = e.target;
+let message = `*COD Account Opening Request*\n\nCompany Name: ${form.company.value}\nOffice Address: ${form.officeAddress.value}\nAuthorize Person Name: ${form.authPerson.value}\nAuthorize Person Cell#: ${form.authCell.value}\nEmail Address: ${form.email.value}\nCNIC Number: ${form.cnic.value}\nIBAN: ${form.iban.value}\nBank Account Title: ${form.accountTitle.value}\nBank Name: ${form.bankName.value}\nWebsite: ${form.website.value}\nPickup Address: ${form.pickupAddress.value}\nContact Person for Daily Pickup: ${form.dailyPickup.value}\nNTN: ${form.ntn.value}`;
+let whatsappNumber = '923298162144';
+let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+window.open(url,'_blank');
+});
 </script>
 
 </body>
-
 </html>
-```
