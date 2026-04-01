@@ -13,16 +13,41 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#f5f7fb;color:#333;}
 
-/* HEADER */
-header{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:white;padding:80px 20px;text-align:center;position:relative;overflow:hidden;}
-header .logo{width:120px;margin-bottom:20px;}
-header h1{font-size:46px;margin-bottom:10px;}
-header p{font-size:18px; margin-bottom:30px;}
-.login-btn{display:inline-block;padding:12px 30px;background:#00c896;color:white;border-radius:30px;text-decoration:none;font-weight:600;position:relative; z-index:1; transition:.3s;}
+/* HERO HEADER */
+header{
+position:relative;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:url('./hero.jpg.jpeg') center/cover no-repeat;
+}
+header::before{
+content:"";
+position:absolute;
+top:0;left:0;width:100%;height:100%;
+background:rgba(15,32,39,0.6);
+}
+header .hero-content{
+position:relative; z-index:2; max-width:700px; color:white;
+}
+header .hero-content img{
+width:120px; margin-bottom:20px;
+}
+header .hero-content h1{
+font-size:46px; margin-bottom:10px;
+}
+header .hero-content h1 span{
+background:#2bb673; padding:5px 15px; border-radius:5px;
+}
+header .hero-content p{
+font-size:18px; margin:15px 0;
+}
+.login-btn{
+display:inline-block; margin-top:20px; padding:12px 30px; background:#00c896; color:white; border-radius:30px; text-decoration:none; font-weight:600;
+}
 .login-btn:hover{background:#00b07f;}
-
-/* Login background image behind button */
-.login-bg{position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:180px; height:auto; opacity:0.2; z-index:0;}
 
 /* GENERAL */
 .container{max-width:1200px;margin:auto;padding:70px 20px;}
@@ -50,16 +75,14 @@ button:hover{background:#00b07f;}
 </head>
 <body>
 
-<!-- Header -->
+<!-- HERO HEADER -->
 <header data-aos="fade-down">
-  <img src="./logo.jpeg" class="logo">
-  <h1>Mayl Logistics</h1>
-  <p>Professional, Transparent & Result-Oriented Courier Solutions</p>
-  
-  <div style="position:relative; display:inline-block;">
-    <img src="/mnt/data/6ad19049-5cb0-4a77-9189-f8eaceca052e.png" class="login-bg" alt="Login Background">
-    <a href="https://mayllogistics.com/home" class="login-btn">Client Login</a>
-  </div>
+<div class="hero-content">
+<img src="./logo.jpeg" alt="Mayl Logistics Logo">
+<h1>Your Trusted <br><span>Courier Partner</span><br>in Lahore!</h1>
+<p>Professional, Transparent & Result-Oriented Courier Solutions</p>
+<a href="https://mayllogistics.com/home" class="login-btn">Client Login</a>
+</div>
 </header>
 
 <!-- Company Profile -->
@@ -76,14 +99,14 @@ returns and maximizing delivery success.
 <section class="container" data-aos="fade-up">
 <h2>Why Businesses Choose Us</h2>
 <div class="cards">
-  <div class="card" data-aos="zoom-in">⭐ <b>80%+ Proven Delivery Ratio</b></div>
-  <div class="card" data-aos="zoom-in">✅ <b>No Fake Returns – Guaranteed</b></div>
-  <div class="card" data-aos="zoom-in">⚡ <b>Fast, Safe & On-Time Deliveries</b></div>
-  <div class="card" data-aos="zoom-in">📝 <b>Shipper Advice hum khud prepare aur manage karte hain</b></div>
-  <div class="card" data-aos="zoom-in">💎 <b>Complete transparency in billing</b></div>
-  <div class="card" data-aos="zoom-in">🛒 <b>Shopify Integration Complete</b></div>
-  <div class="card" data-aos="zoom-in">📩 <b>Auto Dispatch Message From Our System</b></div>
-  <div class="card" data-aos="zoom-in">💰 <b>Affordable Rates:</b> Jo rate bataya jaye — wahi final rate. No surprises.</div>
+<div class="card" data-aos="zoom-in">✔ <b>80%+ Proven Delivery Ratio</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns – Guaranteed</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice hum khud prepare aur manage karte hain</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Complete transparency in billing</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Complete</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Auto Dispatch Message From Our System</b></div>
+<div class="card" data-aos="zoom-in">💰 <b>Affordable Rates: Jo rate bataya jaye — wahi final rate. No surprises.</b></div>
 </div>
 </section>
 
@@ -157,21 +180,21 @@ returns and maximizing delivery success.
 <!-- COD Account Opening Form -->
 <section class="container" data-aos="fade-up">
 <h2>Open Your COD Account</h2>
-<p style="text-align:center; color:#666; margin-bottom:15px;">Your information will remain confidential.</p>
 <form id="codForm" style="max-width:700px;margin:auto;margin-top:20px;">
 <input type="text" name="company" placeholder="Company Name" required>
 <input type="text" name="officeAddress" placeholder="Office Address" required>
 <input type="text" name="authPerson" placeholder="Authorize Person Name" required>
-<input type="tel" name="authCell" placeholder="Authorize Person Cell#" required pattern="[0-9]{10,15}" title="Enter valid phone number">
+<input type="tel" name="authCell" placeholder="Authorize Person Cell#" required pattern="[0-9]{11}">
 <input type="email" name="email" placeholder="Email Address" required>
-<input type="text" name="cnic" placeholder="CNIC Number" required pattern="[0-9]{5}-[0-9]{7}-[0-9]" title="CNIC format: 12345-1234567-1">
-<input type="text" name="iban" placeholder="IBAN" required pattern="[A-Z]{2}[0-9]{22}" title="IBAN format: PK00XXXXXXXXXXXX...">
+<input type="text" name="cnic" placeholder="CNIC Number" required pattern="\d{5}-\d{7}-\d">
+<input type="text" name="iban" placeholder="IBAN" required pattern="[A-Z]{2}\d{2}[A-Z0-9]{1,30}">
 <input type="text" name="accountTitle" placeholder="Bank Account Title" required>
 <input type="text" name="bankName" placeholder="Bank Name" required>
 <input type="url" name="website" placeholder="Website" required>
 <input type="text" name="pickupAddress" placeholder="Pickup Address" required>
 <input type="text" name="dailyPickup" placeholder="Contact Person for Daily Pickup" required>
 <input type="text" name="ntn" placeholder="NTN" required>
+<p style="font-size:14px;color:#555;margin-top:5px;">Your information will remain confidential.</p>
 <button type="submit">Submit via WhatsApp</button>
 </form>
 </section>
@@ -197,12 +220,12 @@ AOS.init({duration:1000});
 
 // COD Form WhatsApp submit
 document.getElementById('codForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  let form = e.target;
-  let message = `*COD Account Opening Request*\n\nCompany Name: ${form.company.value}\nOffice Address: ${form.officeAddress.value}\nAuthorize Person Name: ${form.authPerson.value}\nAuthorize Person Cell#: ${form.authCell.value}\nEmail Address: ${form.email.value}\nCNIC Number: ${form.cnic.value}\nIBAN: ${form.iban.value}\nBank Account Title: ${form.accountTitle.value}\nBank Name: ${form.bankName.value}\nWebsite: ${form.website.value}\nPickup Address: ${form.pickupAddress.value}\nContact Person for Daily Pickup: ${form.dailyPickup.value}\nNTN: ${form.ntn.value}`;
-  let whatsappNumber = '923298162144';
-  let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-  window.open(url,'_blank');
+e.preventDefault();
+let form = e.target;
+let message = `*COD Account Opening Request*\n\nCompany Name: ${form.company.value}\nOffice Address: ${form.officeAddress.value}\nAuthorize Person Name: ${form.authPerson.value}\nAuthorize Person Cell#: ${form.authCell.value}\nEmail Address: ${form.email.value}\nCNIC Number: ${form.cnic.value}\nIBAN: ${form.iban.value}\nBank Account Title: ${form.accountTitle.value}\nBank Name: ${form.bankName.value}\nWebsite: ${form.website.value}\nPickup Address: ${form.pickupAddress.value}\nContact Person for Daily Pickup: ${form.dailyPickup.value}\nNTN: ${form.ntn.value}`;
+let whatsappNumber = '923298162144';
+let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+window.open(url,'_blank');
 });
 </script>
 
