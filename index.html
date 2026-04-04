@@ -8,6 +8,7 @@
 <!-- Fonts & AOS CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
@@ -57,11 +58,14 @@ h2{text-align:center;margin-bottom:40px;font-size:34px;color:#0f2027;}
 .card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(0,0,0,0.15);}
 .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
 .step{background:white;padding:20px;border-radius:10px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+.step i{font-size:24px;margin-bottom:10px;color:#00c896;}
 table{width:100%;border-collapse:collapse;background:white;box-shadow:0 10px 20px rgba(0,0,0,0.08);overflow-x:auto;display:block;}
 th,td{padding:15px;border-bottom:1px solid #eee;text-align:center;}
 th{background:#203a43;color:white;}
 .brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;}
 .brand{background:white;padding:20px;border-radius:8px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,0.08);}
+.brand a{display:block;margin-top:8px;color:#00c896;text-decoration:none;}
+.brand a:hover{text-decoration:underline;}
 .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
 .review{background:white;padding:20px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,0.08);}
 .contact{text-align:center;}
@@ -99,27 +103,64 @@ returns and maximizing delivery success.
 <section class="container" data-aos="fade-up">
 <h2>Why Businesses Choose Us</h2>
 <div class="cards">
-<div class="card" data-aos="zoom-in">✔ <b>80%+ Proven Delivery Ratio</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns – Guaranteed</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>80%+ Proven Delivery Ratio</b> – Strong and consistent performance</div>
+<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns Policy</b> – Business protection guaranteed</div>
 <div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice hum khud prepare aur manage karte hain</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Complete transparency in billing</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Complete</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Auto Dispatch Message From Our System</b></div>
-<div class="card" data-aos="zoom-in">💰 <b>Affordable Rates: Jo rate bataya jaye — wahi final rate. No surprises.</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Complete Billing Transparency</b> – Clear & documented charges</div>
+<div class="card" data-aos="zoom-in">✔ <b>Dedicated Support Team</b> – Quick response & issue resolution</div>
+<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice Management</b> – Hum khud prepare & monitor karte hain</div>
+<div class="card" data-aos="zoom-in">✔ <b>Cash Handling with Proper Reconciliation</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing</div>
+<div class="card" data-aos="zoom-in">✔ <b>Flexible Payment Schedule</b> – Daily (above 10,000 PKR) & Weekly options</div>
+<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b></div>
+</div>
+</section>
+
+<!-- Performance Snapshot Section -->
+<section class="container" data-aos="fade-up">
+<h2>Our Performance Snapshot 📊</h2>
+<div class="cards" style="margin-top:30px;">
+<div class="card" data-aos="zoom-in">📦 <b>3500+ Monthly Deliveries</b></div>
+<div class="card" data-aos="zoom-in">🤝 <b>50+ Active Business Clients</b></div>
+<div class="card" data-aos="zoom-in">📈 <b>90%+ Successful Delivery Ratio</b></div>
+<div class="card" data-aos="zoom-in">⏱ <b>Average Delivery Time: 24–48 Hours</b></div>
 </div>
 </section>
 
 <!-- Operational Process -->
 <section class="container">
-<h2 data-aos="fade-up">Operational Process</h2>
+<h2 data-aos="fade-up">Our Operational Process</h2>
 <div class="process">
-<div class="step" data-aos="fade-right">Order Confirmation</div>
-<div class="step" data-aos="fade-right">Parcel Pickup</div>
-<div class="step" data-aos="fade-right">Next Day Delivery</div>
-<div class="step" data-aos="fade-right">CNA / CNE Follow Up</div>
-<div class="step" data-aos="fade-right">Delivery Confirmation</div>
-<div class="step" data-aos="fade-right">Daily Payment Transfer</div>
+  <div class="step" data-aos="fade-right">
+    <i class="fa-solid fa-file-check"></i><br>
+    <b>Order Confirmation</b><br>
+    <small>Quick validation & acknowledgment of orders</small>
+  </div>
+  <div class="step" data-aos="fade-right">
+    <i class="fa-solid fa-truck-arrow-right"></i><br>
+    <b>Parcel Pickup</b><br>
+    <small>Efficient pickup from your location</small>
+  </div>
+  <div class="step" data-aos="fade-right">
+    <i class="fa-solid fa-clock"></i><br>
+    <b>Next Day Delivery</b><br>
+    <small>Timely delivery within 24–48 hours</small>
+  </div>
+  <div class="step" data-aos="fade-right">
+    <i class="fa-solid fa-user-check"></i><br>
+    <b>CNA / CNE Follow Up</b><br>
+    <small>Proactive follow-up for non-delivered or pending parcels</small>
+  </div>
+  <div class="step" data-aos="fade-right">
+    <i class="fa-solid fa-box"></i><br>
+    <b>Delivery Confirmation</b><br>
+    <small>Real-time updates & proof of delivery</small>
+  </div>
+  <div class="step" data-aos="fade-right">
+    <i class="fa-solid fa-money-bill-wave"></i><br>
+    <b>Daily Payment Transfer</b><br>
+    <small>Secure & timely payment settlement</small>
+  </div>
 </div>
 </section>
 
@@ -132,7 +173,7 @@ returns and maximizing delivery success.
 <tr><td>Delivery Attempts</td><td>5 CNA / 3 CNE</td><td>2-3 Attempts</td></tr>
 <tr><td>Payment Cycle</td><td>Daily</td><td>3-5 Days</td></tr>
 <tr><td>Billing Transparency</td><td>100%</td><td>Limited</td></tr>
-<tr><td>Tax</td><td>4% Government Tax</td><td>Hidden / GST</td></tr>
+<tr><td>Tax</td><td>4% Government Tax</td><td>Hidden / GST / Fuel tex / 4% Government Tax </td></tr>
 </table>
 </section>
 
@@ -140,13 +181,34 @@ returns and maximizing delivery success.
 <section class="container">
 <h2 data-aos="fade-up">Brands Working With Us</h2>
 <div class="brands">
-<div class="brand" data-aos="zoom-in">Baby Planet</div>
-<div class="brand" data-aos="zoom-in">Floure</div>
-<div class="brand" data-aos="zoom-in">Saffrin Skin Care</div>
-<div class="brand" data-aos="zoom-in">The Herbal</div>
-<div class="brand" data-aos="zoom-in">Mini Street</div>
-<div class="brand" data-aos="zoom-in">Elegant Savvy</div>
-<div class="brand" data-aos="zoom-in">FW Organics</div>
+  <div class="brand" data-aos="zoom-in">
+    Baby Planet<br>
+    <a href="https://babyplanet.pk/" target="_blank">Visit Website</a>
+  </div>
+  <div class="brand" data-aos="zoom-in">
+    Floure<br>
+    <a href="https://fleuré.com/" target="_blank">Visit Website</a>
+  </div>
+  <div class="brand" data-aos="zoom-in">
+    Saffrin Skin Care<br>
+    <a href="https://safrinskincare.com.pk/" target="_blank">Visit Website</a>
+  </div>
+  <div class="brand" data-aos="zoom-in">
+    The Herbal<br>
+    <a href="https://theherbal.pk/" target="_blank">Visit Website</a>
+  </div>
+  <div class="brand" data-aos="zoom-in">
+    Mini Street<br>
+    <a href="https://ministreet.pk/" target="_blank">Visit Website</a>
+  </div>
+  <div class="brand" data-aos="zoom-in">
+    Elegant Savvy<br>
+    <a href="https://elegantsavvy.com/" target="_blank">Visit Website</a>
+  </div>
+  <div class="brand" data-aos="zoom-in">
+    FW Organics<br>
+    <a href="https://fworganics.com/" target="_blank">Visit Website</a>
+  </div>
 </div>
 </section>
 
@@ -171,9 +233,9 @@ returns and maximizing delivery success.
 <section class="container">
 <h2 data-aos="fade-up">Customer Reviews</h2>
 <div class="reviews">
-<div class="review" data-aos="flip-left"><h4>Ahmed Khan ⭐⭐⭐⭐⭐</h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi.</p></div>
-<div class="review" data-aos="flip-left"><h4>Usman Ali ⭐⭐⭐⭐⭐</h4><p>Payment daily milti hai. Best courier experience.</p></div>
-<div class="review" data-aos="flip-left"><h4>Hamza Store ⭐⭐⭐⭐⭐</h4><p>Shopify store ke liye perfect courier service.</p></div>
+<div class="review" data-aos="flip-left"><h4>Baby Planet ⭐⭐⭐⭐⭐</h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi.</p></div>
+<div class="review" data-aos="flip-left"><h4>Floure ⭐⭐⭐⭐⭐</h4><p>Payment daily milti hai. Best courier experience.</p></div>
+<div class="review" data-aos="flip-left"><h4>The Herbal ⭐⭐⭐⭐⭐</h4><p>Shopify store ke liye perfect courier service.</p></div>
 </div>
 </section>
 
@@ -187,7 +249,7 @@ returns and maximizing delivery success.
 <input type="tel" name="authCell" placeholder="Authorize Person Cell#" required pattern="[0-9]{11}">
 <input type="email" name="email" placeholder="Email Address" required>
 <input type="text" name="cnic" placeholder="CNIC Number" required pattern="\d{5}-\d{7}-\d">
-<input type="text" name="iban" placeholder="IBAN" required pattern="[A-Z]{2}\d{2}[A-Z0-9]{1,30}">
+<input type="text" name="iban" placeholder="IBAN" required pattern="[A-Z]{2}\d{2}[A-Z0-9]{1,30}"> 
 <input type="text" name="accountTitle" placeholder="Bank Account Title" required>
 <input type="text" name="bankName" placeholder="Bank Name" required>
 <input type="url" name="website" placeholder="Website" required>
@@ -204,7 +266,7 @@ returns and maximizing delivery success.
 <h2>Contact</h2>
 <p><b>Phone:</b> 03298162144</p>
 <p><b>Email:</b> mayllogisticsofficial@gmail.com</p>
-<p><b>Office Location:</b> <a href="https://maps.app.goo.gl/QthfRz4fKqa5pFRf7" target="_blank">View on Google Maps</a></p>
+<p><b>Office Location:</b> <a href="https://maps.app.goo.gl/awnwgA8xSn5euaCFA" target="_blank">View on Google Maps</a></p>
 </section>
 
 <!-- WhatsApp Button -->
