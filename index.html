@@ -215,6 +215,43 @@ returns and maximizing delivery success.
 <!-- Parcel Delivery Rate List -->
 <section class="container" data-aos="fade-up">
 <h2>Parcel Delivery Rates</h2>
+<div class="card">
+<h3>📊 Parcel Calculator</h3>
+
+<input type="number" id="amountInput" placeholder="Enter Amount" oninput="calcTotal()">
+
+<p>Fixed Deduction: <b>Rs. 140</b></p>
+
+<p>Cash Holding Tax (2%): <span id="cashTax">0</span></p>
+<p>Sales Tax (2%): <span id="saleTax">0</span></p>
+
+<hr>
+
+<p style="font-size:18px;font-weight:700;">
+Final Total: Rs. <span id="finalTotal">0</span>
+</p>
+</div>
+
+<script>
+function calcTotal(){
+let amount = parseFloat(document.getElementById('amountInput').value) || 0;
+
+// fixed deduction
+let afterFixed = amount - 140;
+
+// taxes on remaining amount
+let cashTax = afterFixed * 0.02;
+let saleTax = afterFixed * 0.02;
+
+// final total
+let final = afterFixed - cashTax - saleTax;
+
+// show values
+document.getElementById('cashTax').innerText = cashTax.toFixed(2);
+document.getElementById('saleTax').innerText = saleTax.toFixed(2);
+document.getElementById('finalTotal').innerText = final.toFixed(2);
+}
+</script>
 <div class="cards" style="margin-top:30px;">
 <div class="card" data-aos="zoom-in">
 <h3><span style="font-size:22px;">&#128230;</span> Up to 1 KG</h3>
