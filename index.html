@@ -14,16 +14,6 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{background:#f5f7fb;color:#333;}
 
-.star-rating i{
-font-size:22px;
-color:#ccc;
-cursor:pointer;
-transition:.3s;
-}
-
-.star-rating i.active{
-color:#ffc107;
-}
 /* HERO HEADER */
 header{
 position:relative;
@@ -277,30 +267,7 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 </section>
 
 <!-- Customer Reviews -->
-<div class="reviews">
-   existing reviews yahan hain
-</div>
-<!-- Write a Review Form -->
-<div class="card" style="margin-top:40px;max-width:600px;margin-left:auto;margin-right:auto;">
-<h3 style="margin-bottom:15px;">Write a Review</h3>
-
-<form id="reviewForm">
-<input type="text" id="reviewName" placeholder="Your Name" required>
-
-<div class="star-rating" style="margin:10px 0;">
-  <i class="fa-solid fa-star" data-value="1"></i>
-  <i class="fa-solid fa-star" data-value="2"></i>
-  <i class="fa-solid fa-star" data-value="3"></i>
-  <i class="fa-solid fa-star" data-value="4"></i>
-  <i class="fa-solid fa-star" data-value="5"></i>
-</div>
-
-<textarea id="reviewMessage" placeholder="Write your review..." required 
-style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;height:100px;"></textarea>
-
-<button type="submit">Submit Review</button>
-</form>
-</div>
+<section class="container">
 <h2 data-aos="fade-up">Customer Reviews</h2>
 <div class="reviews">
 <div class="review" data-aos="flip-left"><h4>Baby Planet ⭐⭐⭐⭐⭐</h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi.</p></div>
@@ -349,46 +316,7 @@ style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;height:10
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({duration:1000});
-<script>
-let selectedRating = 0;
-let stars = document.querySelectorAll('.star-rating i');
 
-stars.forEach(star => {
-star.addEventListener('click', function(){
-selectedRating = this.getAttribute('data-value');
-
-stars.forEach(s => s.classList.remove('active'));
-for(let i=0;i<selectedRating;i++){
-stars[i].classList.add('active');
-}
-});
-});
-
-document.getElementById('reviewForm').addEventListener('submit', function(e){
-e.preventDefault();
-
-if(selectedRating === 0){
-alert("Please select a star rating");
-return;
-}
-
-let name = document.getElementById('reviewName').value;
-let message = document.getElementById('reviewMessage').value;
-
-let reviewHTML = `
-<div class="review">
-<h4>${name} ${'⭐'.repeat(selectedRating)}</h4>
-<p>${message}</p>
-</div>
-`;
-
-document.querySelector('.reviews').innerHTML += reviewHTML;
-
-this.reset();
-stars.forEach(s => s.classList.remove('active'));
-selectedRating = 0;
-});
-</script>
 // COD Form WhatsApp submit
 document.getElementById('codForm').addEventListener('submit', function(e){
 e.preventDefault();
