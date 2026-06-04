@@ -220,7 +220,7 @@ returns and maximizing delivery success.
 
 <input type="number" id="amountInput" placeholder="Enter Amount" oninput="calcTotal()">
 
-<p>Fixed Deduction: <b>Rs. 140</b></p>
+<p>Fixed Deduction: <b>Rs. 145</b></p>
 
 <p>Cash Holding Tax (2%): <span id="cashTax">0</span></p>
 <p>Sales Tax (2%): <span id="saleTax">0</span></p>
@@ -237,7 +237,7 @@ function calcTotal(){
 let amount = parseFloat(document.getElementById('amountInput').value) || 0;
 
 // fixed deduction
-let afterFixed = amount - 140;
+let afterFixed = amount - 145;
 
 // taxes on remaining amount
 let cashTax = afterFixed * 0.02;
@@ -255,7 +255,7 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 <div class="cards" style="margin-top:30px;">
 <div class="card" data-aos="zoom-in">
 <h3><span style="font-size:22px;">&#128230;</span> Up to 1 KG</h3>
-<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 140 / Parcel</p>
+<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 145 / Parcel</p>
 <p>Includes standard courier services & 4% government tax.</p>
 </div>
 <div class="card" data-aos="zoom-in">
