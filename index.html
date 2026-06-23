@@ -11,8 +11,48 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:#f5f7fb;color:#333;}
+:root {
+    --bg-color: #f5f7fb;
+    --card-bg: white;
+    --text-color: #333;
+    --heading-color: #0f2027;
+    --border-color: #eee;
+    --input-border: #ccc;
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121824;
+    --card-bg: #1e2640;
+    --text-color: #cbd5e1;
+    --heading-color: #ffffff;
+    --border-color: #2e3a5a;
+    --input-border: #475569;
+    --modal-overlay: rgba(0, 0, 0, 0.75);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif; transition: background-color 0.3s, color 0.3s;}
+body{background: var(--bg-color); color: var(--text-color);}
+
+/* DARK MODE TOGGLE */
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #00c896;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
 /* HERO HEADER */
 header{
@@ -45,39 +85,303 @@ background:#2bb673; padding:5px 15px; border-radius:5px;
 header .hero-content p{
 font-size:18px; margin:15px 0;
 }
-.login-btn{
-display:inline-block; margin-top:20px; padding:12px 30px; background:#00c896; color:white; border-radius:30px; text-decoration:none; font-weight:600;
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
 }
+.login-btn, .open-account-btn{
+display:inline-block; padding:12px 30px; color:white; border-radius:30px; text-decoration:none; font-weight:600; cursor: pointer; border: none; font-size: 16px;
+}
+.login-btn{background:#00c896;}
 .login-btn:hover{background:#00b07f;}
+.open-account-btn{background:#2bb673;}
+.open-account-btn:hover{background:#22925b;}
 
 /* GENERAL */
 .container{max-width:1200px;margin:auto;padding:70px 20px;}
-h2{text-align:center;margin-bottom:40px;font-size:34px;color:#0f2027;}
+h2{text-align:center;margin-bottom:40px;font-size:34px;color: var(--heading-color);}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
-.card{background:white;padding:25px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.08);transition:.3s;text-align:center;}
-.card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(0,0,0,0.15);}
+.card{background: var(--card-bg);padding:25px;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.06);transition:.3s;text-align:center;}
+.card:hover{transform:translateY(-8px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
 .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
-.step{background:white;padding:20px;border-radius:10px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+.step{background: var(--card-bg);padding:20px;border-radius:10px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.06);}
 .step i{font-size:24px;margin-bottom:10px;color:#00c896;}
-table{width:100%;border-collapse:collapse;background:white;box-shadow:0 10px 20px rgba(0,0,0,0.08);overflow-x:auto;display:block;}
-th,td{padding:15px;border-bottom:1px solid #eee;text-align:center;}
+
+/* FIXED RESPONSIVE TABLE WRAPPER */
+.table-wrapper { 
+    width: 100%;
+    overflow-x: auto; 
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    background: var(--card-bg);
+    overflow: hidden;
+}
+th,td{padding:15px;border-bottom:1px solid var(--border-color);text-align:center;}
 th{background:#203a43;color:white;}
+
+/* BRANDS SECTION */
 .brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;}
-.brand{background:white;padding:20px;border-radius:8px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,0.08);}
-.brand a{display:block;margin-top:8px;color:#00c896;text-decoration:none;}
+.brand{background: var(--card-bg);padding:20px;border-radius:8px;text-align:center;box-shadow:0 8px 18px rgba(0,0,0,0.06); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: center; font-weight: 500;}
+.brand a{display:block;margin-top:8px;color:#00c896;text-decoration:none;font-size: 14px;}
 .brand a:hover{text-decoration:underline;}
+.more-brands-container {
+    display: none;
+    margin-top: 20px;
+}
+.view-more-btn-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+.view-more-btn {
+    background: #203a43;
+    color: white;
+    width: auto;
+    padding: 10px 30px;
+    font-size: 15px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.view-more-btn:hover {
+    background: #0f2027;
+}
+
+/* REVIEWS SECTION */
 .reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
-.review{background:white;padding:20px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,0.08);}
-.contact{text-align:center;}
-.contact p{margin:10px 0;font-size:18px;}
-.whatsapp{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;font-size:18px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+.review{background: var(--card-bg);padding:20px;border-radius:10px;box-shadow:0 8px 18px rgba(0,0,0,0.06);text-align: left;}
+.review h4 {color: #00c896; margin-bottom: 5px; font-size: 16px; display: flex; justify-content: space-between; align-items: center;}
+.review h4 span {color: #f1c40f; font-size: 12px;}
+.review p {font-size: 14px; line-height: 1.5; color: var(--text-color);}
+.more-reviews-container {
+    display: none;
+    margin-top: 25px;
+}
+
+/* STYLISH CONTACT SECTION */
+.contact-section {
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    color: white;
+    border-radius: 20px;
+    padding: 50px 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+.contact-section h2 { color: #ffffff; }
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.contact-item-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #00c896;
+    backdrop-filter: blur(5px);
+}
+.contact-item-box i {
+    font-size: 26px;
+    color: #00c896;
+    background: rgba(0, 200, 150, 0.1);
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.contact-item-box p {
+    margin: 0;
+    font-size: 15px;
+    color: #e2e8f0;
+}
+.contact-item-box strong {
+    display: block;
+    font-size: 17px;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+.contact-item-box a {
+    color: #00c896;
+    text-decoration: none;
+    font-weight: 600;
+}
+.contact-item-box a:hover {
+    text-decoration: underline;
+}
+.map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    height: 350px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+.terms-btn-container {
+    text-align: center;
+    margin-top: 40px;
+}
+.terms-trigger-btn {
+    background: transparent;
+    border: 2px dashed #00c896;
+    color: #00c896;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    transition: 0.3s;
+}
+.terms-trigger-btn:hover {
+    background: #00c896;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 200, 150, 0.3);
+}
+
+@media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+    .map-container { height: 260px; }
+}
+
+/* TERMS MODAL STYLING */
+.terms-content-box {
+    text-align: left;
+    color: var(--text-color);
+}
+.terms-content-box h3 {
+    color: #00c896;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+.terms-body-scroll {
+    margin-top: 15px;
+    padding-right: 10px;
+}
+.terms-section-block {
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+.terms-section-block:last-child {
+    border-bottom: none;
+}
+.terms-section-block h4 {
+    color: var(--heading-color);
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.terms-section-block p, .terms-section-block ul {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.terms-section-block ul {
+    list-style-position: inside;
+    margin-top: 5px;
+}
+.terms-section-block ul li {
+    margin-bottom: 4px;
+}
+
 footer{background:#0f2027;color:white;text-align:center;padding:20px;}
-input,button{outline:none;font-family:'Poppins',sans-serif;margin:5px 0;padding:12px;border-radius:8px;border:1px solid #ccc;width:100%;}
+input,button,select{outline:none;font-family:'Poppins',sans-serif;margin:5px 0;padding:12px;border-radius:8px;border:1px solid var(--input-border);width:100%; background: var(--card-bg); color: var(--text-color);}
 button{cursor:pointer;background:#00c896;color:white;font-weight:600;border:none;transition:.3s;}
 button:hover{background:#00b07f;}
+
+/* CALCULATOR STYLING */
+.calc-container { max-width: 500px; margin: auto; text-align: left; }
+.calc-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 15px; color: var(--text-color); }
+.calc-row.highlight { font-weight: 600; color: #e74c3c; border-top: 1px dashed var(--border-color); padding-top: 8px; }
+.calc-row.total { font-size: 20px; font-weight: 700; color: #2bb673; border-top: 2px solid #2bb673; padding-top: 10px; margin-top: 10px; }
+
+/* SERVICE AREAS */
+.area-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
+.area-item { background: var(--card-bg); padding: 15px; border-radius: 8px; text-align: center; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.04); border-left: 4px solid #00c896; }
+
+/* FAQS SECTION */
+.faq-container { max-width: 800px; margin: auto; }
+.faq-item { background: var(--card-bg); margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+.faq-question { padding: 20px; font-weight: 600; color: var(--heading-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: var(--text-color); font-size: 15px; border-top: 0 solid var(--border-color); }
+.faq-item.active .faq-answer { max-height: 200px; padding: 20px; border-top-width: 1px; }
+.faq-question i { transition: 0.3s; }
+.faq-item.active .faq-question i { transform: rotate(180deg); color: #00c896; }
+
+/* MODAL POPUP STYLING */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--modal-overlay);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+}
+.modal-box {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    position: relative;
+    overflow-y: auto;
+    padding: 30px;
+    animation: slideIn 0.3s ease-out;
+}
+@keyframes slideIn {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    background: none;
+    border: none;
+    width: auto; padding: 0;
+}
+.close-modal:hover { color: #e74c3c; }
+
+/* INTERACTIVE WHATSAPP WIDGET */
+.wa-widget { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
+.wa-button { background: #25D366; color: white; padding: 12px 22px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(37,211,102,0.4); cursor: pointer; }
+.wa-popup { position: absolute; bottom: 65px; right: 0; width: 300px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: none; overflow: hidden; border: 1px solid var(--border-color); }
+.wa-header { background: #0f2027; color: white; padding: 15px; display: flex; align-items: center; gap: 12px; }
+.wa-avatar { width: 40px; height: 40px; background: #00c896; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.wa-status { font-size: 12px; color: #25D366; display: flex; align-items: center; gap: 4px; }
+.wa-body { padding: 15px; font-size: 14px; color: var(--text-color); }
+.wa-chat-btn { display: block; background: #25D366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 10px; }
 </style>
 </head>
 <body>
+
+<!-- Dark Mode Toggle Button -->
+<button class="theme-switch" id="themeToggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
 
 <!-- HERO HEADER -->
 <header data-aos="fade-down">
@@ -85,7 +389,10 @@ button:hover{background:#00b07f;}
 <img src="./logo.jpeg" alt="Mayl Logistics Logo">
 <h1>Your Trusted <br><span>Courier Partner</span><br>in Lahore!</h1>
 <p>Professional, Transparent & Result-Oriented Courier Solutions</p>
-<a href="https://mayllogistics.com/home" class="login-btn">Client Login</a>
+<div class="cta-buttons">
+    <a href="https://mayllogistics.com/home" class="login-btn">Client Login</a>
+    <button class="open-account-btn" onclick="openModal()">Open Your COD Account</button>
+</div>
 </div>
 </header>
 
@@ -95,7 +402,7 @@ button:hover{background:#00b07f;}
 <p style="text-align:center;max-width:850px;margin:auto;">
 Mayl Logistics is a fully customized courier company operating across Lahore.
 We provide secure, fast and transparent delivery services while minimizing
-returns and maximizing delivery success.
+returns and maximizing delivery success. Specially designed for Shopify sellers, Facebook / Instagram sellers aur local eCommerce businesses.
 </p>
 </section>
 
@@ -105,14 +412,33 @@ returns and maximizing delivery success.
 <div class="cards">
 <div class="card" data-aos="zoom-in">✔ <b>80%+ Proven Delivery Ratio</b> – Strong and consistent performance</div>
 <div class="card" data-aos="zoom-in">✔ <b>No Fake Returns Policy</b> – Business protection guaranteed</div>
+<div class="card" data-aos="zoom-in">✔ <b>5 CNA / 3 CNE Attempts</b> – Customer tak har haal mein pohanchne ki koshish</div>
 <div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b></div>
 <div class="card" data-aos="zoom-in">✔ <b>Complete Billing Transparency</b> – Clear & documented charges</div>
 <div class="card" data-aos="zoom-in">✔ <b>Dedicated Support Team</b> – Quick response & issue resolution</div>
 <div class="card" data-aos="zoom-in">✔ <b>Shipper Advice Management</b> – Hum khud prepare & monitor karte hain</div>
 <div class="card" data-aos="zoom-in">✔ <b>Cash Handling with Proper Reconciliation</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing</div>
+<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing.</div>
 <div class="card" data-aos="zoom-in">✔ <b>Flexible Payment Schedule</b> – Daily (above 10,000 PKR) & Weekly options</div>
-<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b>.</div>
+</div>
+</section>
+
+<!-- Service Areas Section -->
+<section class="container" data-aos="fade-up">
+<h2>Our Lahore Service Areas 📍</h2>
+<p style="text-align:center; max-width:700px; margin:auto; margin-bottom:30px;">Hum Lahore ke tamam major commercial aur residential areas me orders safely aur on-time deliver karte hain.</p>
+<div class="area-grid">
+  <div class="area-item" data-aos="zoom-in">Gulberg (I, II, III)</div>
+  <div class="area-item" data-aos="zoom-in">DHA (All Phases)</div>
+  <div class="area-item" data-aos="zoom-in">Bahria Town</div>
+  <div class="area-item" data-aos="zoom-in">Johar Town</div>
+  <div class="area-item" data-aos="zoom-in">Faisal Town</div>
+  <div class="area-item" data-aos="zoom-in">Model Town</div>
+  <div class="area-item" data-aos="zoom-in">Iqbal Town</div>
+  <div class="area-item" data-aos="zoom-in">Samanabad</div>
+  <div class="area-item" data-aos="zoom-in">Walled City / Anarkali</div>
+  <div class="area-item" data-aos="zoom-in">Cavalry Ground</div>
 </div>
 </section>
 
@@ -167,147 +493,467 @@ returns and maximizing delivery success.
 <!-- Competitive Comparison -->
 <section class="container">
 <h2 data-aos="fade-up">Competitive Comparison</h2>
-<table data-aos="zoom-in">
+<div class="table-wrapper" data-aos="zoom-in">
+<table>
 <tr><th>Feature</th><th>Mayl Logistics</th><th>Typical Courier</th></tr>
 <tr><td>Fake Returns</td><td>No</td><td>Possible</td></tr>
 <tr><td>Delivery Attempts</td><td>5 CNA / 3 CNE</td><td>2-3 Attempts</td></tr>
-<tr><td>Payment Cycle</td><td>Daily</td><td>3-5 Days</td></tr>
+<tr><td>Payment Cycle</td><td>Daily (above 10k) / Weekly</td><td>3-5 Days</td></tr>
 <tr><td>Billing Transparency</td><td>100%</td><td>Limited</td></tr>
-<tr><td>Tax</td><td> Only ( 4% Government Tax )</td><td> ( Hidden / GST / Fuel tex / 4% Government Tax )  </td></tr>
+<tr><td>Tax / Hidden Charges</td><td>Only 4% Tax (No GST / No Hidden Cost)</td><td>Hidden / GST / Fuel Tax extra</td></tr>
 </table>
-</section>
-
-<!-- Brands -->
-<section class="container">
-<h2 data-aos="fade-up">Brands Working With Us</h2>
-<div class="brands">
-  <div class="brand" data-aos="zoom-in">
-    Baby Planet<br>
-    <a href="https://babyplanet.pk/" target="_blank">Visit Website</a>
-  </div>
-  <div class="brand" data-aos="zoom-in">
-    Floure<br>
-    <a href="https://fleuré.com/" target="_blank">Visit Website</a>
-  </div>
-  <div class="brand" data-aos="zoom-in">
-    Saffrin Skin Care<br>
-    <a href="https://safrinskincare.com.pk/" target="_blank">Visit Website</a>
-  </div>
-  <div class="brand" data-aos="zoom-in">
-    The Herbal<br>
-    <a href="https://theherbal.pk/" target="_blank">Visit Website</a>
-  </div>
-  <div class="brand" data-aos="zoom-in">
-    Mini Street<br>
-    <a href="https://ministreet.pk/" target="_blank">Visit Website</a>
-  </div>
-  <div class="brand" data-aos="zoom-in">
-    Elegant Savvy<br>
-    <a href="https://elegantsavvy.com/" target="_blank">Visit Website</a>
-  </div>
-  <div class="brand" data-aos="zoom-in">
-    FW Organics<br>
-    <a href="https://fworganics.com/" target="_blank">Visit Website</a>
-  </div>
 </div>
 </section>
 
-<!-- Parcel Delivery Rate List -->
+<!-- Trial Offer Banner Option -->
+<section class="container" style="text-align: center;" data-aos="fade-up">
+  <div style="background: linear-gradient(135deg, #0f2027, #203a43); color: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+    <h2 style="color: white; margin-bottom: 15px;">🎁 No-Risk Trial Offer</h2>
+    <p style="max-width: 750px; margin: auto; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+      Aap chahein to pehle <b>Trial Basis</b> par hamari service check kar sakte hain. Jab aap khud hamara successful delivery ratio aur zero fake returns ke kamaal results dekh lein, tab continuous kaam start karein!
+    </p>
+    <button class="open-account-btn" onclick="openModal()" style="background: #00c896; width: auto; padding: 12px 35px;">Start Free Trial Now</button>
+  </div>
+</section>
+
+<!-- Brands Section -->
+<section class="container">
+<h2 data-aos="fade-up">Brands Working With Us</h2>
+<!-- Existing Brands -->
+<div class="brands">
+  <div class="brand" data-aos="zoom-in">Baby Planet<br><a href="https://babyplanet.pk/" target="_blank">Visit Website</a></div>
+  <div class="brand" data-aos="zoom-in">Floure<br><a href="https://fleuré.com/" target="_blank">Visit Website</a></div>
+  <div class="brand" data-aos="zoom-in">Saffrin Skin Care<br><a href="https://safrinskincare.com.pk/" target="_blank">Visit Website</a></div>
+  <div class="brand" data-aos="zoom-in">The Herbal<br><a href="https://theherbal.pk/" target="_blank">Visit Website</a></div>
+  <div class="brand" data-aos="zoom-in">Mini Street<br><a href="https://ministreet.pk/" target="_blank">Visit Website</a></div>
+  <div class="brand" data-aos="zoom-in">Elegant Savvy<br><a href="https://elegantsavvy.com/" target="_blank">Visit Website</a></div>
+  <div class="brand" data-aos="zoom-in">FW Organics<br><a href="https://fworganics.com/" target="_blank">Visit Website</a></div>
+</div>
+
+<!-- New Brands Container Hidden -->
+<div class="more-brands-container" id="moreBrands">
+  <div class="brands" style="margin-top: 20px;">
+    <div class="brand">Viga.Pk</div>
+    <div class="brand">Simaals Fashion</div>
+    <div class="brand">kiddies world</div>
+    <div class="brand">Aoracart</div>
+    <div class="brand">Aruze3</div>
+    <div class="brand">chicGenzee</div>
+    <div class="brand">WearZeeshan</div>
+    <div class="brand">Dior Gulberg</div>
+    <div class="brand">GETEASYPK</div>
+    <div class="brand">Globaltek</div>
+    <div class="brand">Jeans & Shirt</div>
+    <div class="brand">Muhammad Hassaan</div>
+    <div class="brand">Trust hub</div>
+    <div class="brand">Farooq Ahmed Meezo</div>
+    <div class="brand">Syed imran abbas hamdani</div>
+    <div class="brand">Abrar Traders</div>
+    <div class="brand">PrimeInk Creations</div>
+    <div class="brand">ZYRO</div>
+    <div class="brand">Vioraforher</div>
+    <div class="brand">Muhammad Shehroz Naqi Fusion</div>
+    <div class="brand">SMART HOMES</div>
+    <div class="brand">fawad Pakwish</div>
+    <div class="brand">Daily Deal</div>
+    <div class="brand">Easy Peasy</div>
+    <div class="brand">Organics</div>
+    <div class="brand">Beautybuzz</div>
+    <div class="brand">lavashak by kato</div>
+    <div class="brand">Glowersteps</div>
+    <div class="brand">kumari Pk</div>
+    <div class="brand">MatchVet</div>
+    <div class="brand">babyplanet pk</div>
+    <div class="brand">Prints and promises</div>
+    <div class="brand">Zarfoni Organic Foods</div>
+    <div class="brand">zain Universal Mart</div>
+  </div>
+</div>
+
+<div class="view-more-btn-wrapper">
+    <button class="view-more-btn" id="viewMoreBtn" onclick="toggleBrands()">View More Brands <i class="fa-solid fa-chevron-down"></i></button>
+</div>
+</section>
+
+<!-- Parcel Delivery Rate List & Calculator -->
 <section class="container" data-aos="fade-up">
 <h2>Parcel Delivery Rates</h2>
-<div class="card">
-<h3>📊 Parcel Calculator</h3>
+<div class="card calc-container">
+<h3 style="text-align:center; margin-bottom:15px;">📊 Parcel Calculator</h3>
 
-<input type="number" id="amountInput" placeholder="Enter Amount" oninput="calcTotal()">
+<input type="number" id="amountInput" placeholder="Enter COD Amount (e.g. 1000)" oninput="calcTotal()">
 
-<p>Fixed Deduction: <b>Rs. 145</b></p>
+<div class="calc-row">
+  <span>Fixed Delivery Charges:</span>
+  <span>Rs. 145</span>
+</div>
+<div class="calc-row">
+  <span>Cash Holding Tax (2%):</span>
+  <span>Rs. <span id="cashTax">0.00</span></span>
+</div>
+<div class="calc-row">
+  <span>Sales Tax (2%):</span>
+  <span>Rs. <span id="saleTax">0.00</span></span>
+</div>
 
-<p>Cash Holding Tax (2%): <span id="cashTax">0</span></p>
-<p>Sales Tax (2%): <span id="saleTax">0</span></p>
+<div class="calc-row highlight">
+  <span>Total Deduction Amount:</span>
+  <span>Rs. <span id="totalDeduction">0.00</span></span>
+</div>
 
-<hr>
-
-<p style="font-size:18px;font-weight:700;">
-Final Total: Rs. <span id="finalTotal">0</span>
-</p>
+<div class="calc-row total">
+  <span>Total Remaining Amount:</span>
+  <span>Rs. <span id="finalTotal">0.00</span></span>
+</div>
 </div>
 
 <script>
 function calcTotal(){
 let amount = parseFloat(document.getElementById('amountInput').value) || 0;
 
-// fixed deduction
-let afterFixed = amount - 145;
+if(amount <= 0) {
+    document.getElementById('cashTax').innerText = "0.00";
+    document.getElementById('saleTax').innerText = "0.00";
+    document.getElementById('totalDeduction').innerText = "0.00";
+    document.getElementById('finalTotal').innerText = "0.00";
+    return;
+}
 
-// taxes on remaining amount
-let cashTax = afterFixed * 0.02;
-let saleTax = afterFixed * 0.02;
+let totalValueBeforeTax = amount + 145;
+let cashTax = totalValueBeforeTax * 0.02;
+let saleTax = totalValueBeforeTax * 0.02;
+let totalDeduction = 145 + cashTax + saleTax;
+let final = amount - totalDeduction;
+if (final < 0) final = 0;
 
-// final total
-let final = afterFixed - cashTax - saleTax;
-
-// show values
 document.getElementById('cashTax').innerText = cashTax.toFixed(2);
 document.getElementById('saleTax').innerText = saleTax.toFixed(2);
+document.getElementById('totalDeduction').innerText = totalDeduction.toFixed(2);
 document.getElementById('finalTotal').innerText = final.toFixed(2);
 }
 </script>
+
 <div class="cards" style="margin-top:30px;">
 <div class="card" data-aos="zoom-in">
-<h3><span style="font-size:22px;">&#128230;</span> Up to 1 KG</h3>
+<h3><span style="font-size:22px;">📦</span> Up to 1 KG</h3>
 <p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 145 / Parcel</p>
 <p>Includes standard courier services & 4% government tax.</p>
 </div>
 <div class="card" data-aos="zoom-in">
-<h3><span style="font-size:22px;">&#128230;</span> Above 1 KG</h3>
+<h3><span style="font-size:22px;">📦</span> Above 1 KG</h3>
 <p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 35 / KG (additional)</p>
 <p>Calculated per extra kg over 1 KG. Transparent billing guaranteed.</p>
 </div>
 </div>
 </section>
 
-<!-- Customer Reviews -->
-<section class="container">
-<h2 data-aos="fade-up">Customer Reviews</h2>
-<div class="reviews">
-<div class="review" data-aos="flip-left"><h4>Baby Planet ⭐⭐⭐⭐⭐</h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi.</p></div>
-<div class="review" data-aos="flip-left"><h4>Floure ⭐⭐⭐⭐⭐</h4><p>Payment daily milti hai. Best courier experience.</p></div>
-<div class="review" data-aos="flip-left"><h4>The Herbal ⭐⭐⭐⭐⭐</h4><p>Shopify store ke liye perfect courier service.</p></div>
+<!-- FAQs Section -->
+<section class="container" data-aos="fade-up">
+<h2>Frequently Asked Questions 🤔</h2>
+<div class="faq-container">
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Weight calculate kaise hota hai?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      Standard weight limit 1 KG tak hai jiske charges Rs. 145 hain. Agar aapka parcel 1 KG se upar hoga, to har extra KG par Rs. 35 additional charge kiye jayenge.
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Lahore ke kin areas mein delivery hoti hai?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      Mayl Logistics poore Lahore ke major residential aur commercial zones me delivery karti hai, jisme DHA, Gulberg, Bahria Town, Johar Town, Faisal Town, Iqbal Town aur Walled City shamil hain.
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Payment cycle kya hai? Paid amount kab milti hai?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      Hum apne clients ko Daily aur Weekly payment options dete hain. Agar aapki collection 10,000 PKR se upar hai, to aap daily bank transfer le sakte hain.
+    </div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggleFaq(this)">
+      <span>Kya "Fake Returns" ke koi charges hote hain?</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="faq-answer">
+      Bilkul nahi! Mayl Logistics ki sabsay bari khoobi "No Fake Returns Policy" hai. Hum customer tak properly 5 CNA / 3 CNE attempts karte hain taake aapka business loss na ho.
+    </div>
+  </div>
 </div>
 </section>
 
-<!-- COD Account Opening Form -->
+<!-- Customer Reviews Section (With View More Feature) -->
+<section class="container">
+<h2>Customer Reviews</h2>
+<!-- Top 3 Default Reviews -->
+<div class="reviews">
+<div class="review" data-aos="flip-left"><h4>Baby Planet <span>⭐⭐⭐⭐⭐</span></h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi. Time par payment mil jati hai.</p></div>
+<div class="review" data-aos="flip-left"><h4>Floure <span>⭐⭐⭐⭐⭐</span></h4><p>Payment daily milti hai. Best courier experience for premium apparel shipping.</p></div>
+<div class="review" data-aos="flip-left"><h4>The Herbal <span>⭐⭐⭐⭐⭐</span></h4><p>Shopify store ke liye perfect courier service. Customer handling and tracking system outstanding hai.</p></div>
+</div>
+
+<!-- Remaining Reviews Hidden by Default -->
+<div class="more-reviews-container" id="moreReviews">
+  <div class="reviews">
+    <div class="review"><h4>Elegant Savvy <span>⭐⭐⭐⭐⭐</span></h4><p>Bohot professional staff hai. Humare premium packages safely aur on-time deliver hote hain Lahore me.</p></div>
+    <div class="review"><h4>Viga.Pk <span>⭐⭐⭐⭐⭐</span></h4><p>Return ratio kafi had tak manage ho gaya hai jab se inki 5 CNA/3 CNE service test ki hai. Recommended!</p></div>
+    <div class="review"><h4>Simaals Fashion <span>⭐⭐⭐⭐⭐</span></h4><p>Cash delivery reconciliation bohot transparent hai, koi hidden deduction nahi hoti.</p></div>
+    <div class="review"><h4>chicGenzee <span>⭐⭐⭐⭐⭐</span></h4><p>Perfect shipping speed and customer updates are super accurate. Best for young e-commerce brands.</p></div>
+    <div class="review"><h4>kiddies world <span>⭐⭐⭐⭐⭐</span></h4><p>Very safe handling for fragile and premium kids goods. Highly recommended courier.</p></div>
+    <div class="review"><h4>Aoracart <span>⭐⭐⭐⭐⭐</span></h4><p>Our operational burden dropped significantly. Their automated dispatch messaging is awesome.</p></div>
+    <div class="review"><h4>Aruze3 <span>⭐⭐⭐⭐⭐</span></h4><p>On-time payment transfers and excellent support panel. No fake returns recorded yet!</p></div>
+    <div class="review"><h4>WearZeeshan <span>⭐⭐⭐⭐⭐</span></h4><p>Daily cash reconciliation is perfect. They deliver exactly what they pitch.</p></div>
+    <div class="review"><h4>Dior Gulberg <span>⭐⭐⭐⭐⭐</span></h4><p>Premium service matching premium product handling. Excellent performance in Lahore layout.</p></div>
+    <div class="review"><h4>GETEASYPK <span>⭐⭐⭐⭐⭐</span></h4><p>Very fast processing time and delivery attempts are genuine. Completely transparent billing.</p></div>
+    <div class="review"><h4>Globaltek <span>⭐⭐⭐⭐⭐</span></h4><p>Tech-focused automated workflow makes client management super friendly.</p></div>
+    <div class="review"><h4>Jeans & Shirt <span>⭐⭐⭐⭐⭐</span></h4><p>Bulk clothing distribution has never been this simple. Zero hidden taxes.</p></div>
+    <div class="review"><h4>Muhammad Hassaan <span>⭐⭐⭐⭐⭐</span></h4><p>Top notch support team, issues are solved instantly within standard timelines.</p></div>
+    <div class="review"><h4>Trust hub <span>⭐⭐⭐⭐⭐</span></h4><p>Living up to their name. True security and standard success metrics.</p></div>
+    <div class="review"><h4>Farooq Ahmed Meezo <span>⭐⭐⭐⭐⭐</span></h4><p>Highly professional operations, perfect dashboard syncing logic.</p></div>
+    <div class="review"><h4>Syed imran abbas hamdani <span>⭐⭐⭐⭐⭐</span></h4><p>Great response behavior and perfect next-day execution accuracy.</p></div>
+    <div class="review"><h4>Abrar Traders <span>⭐⭐⭐⭐⭐</span></h4><p>Reliable logistics workflow for continuous B2C store management cycles.</p></div>
+    <div class="review"><h4>PrimeInk Creations <span>⭐⭐⭐⭐⭐</span></h4><p>Creative packaging updates and precise automated tracking info shared with clients.</p></div>
+    <div class="review"><h4>ZYRO <span>⭐⭐⭐⭐⭐</span></h4><p>Exceptional delivery ratio. Saved a lot on standard return losses.</p></div>
+    <div class="review"><h4>Vioraforher <span>⭐⭐⭐⭐⭐</span></h4><p>Very delicate handling for beauty products. Quick daily payouts.</p></div>
+    <div class="review"><h4>Muhammad Shehroz Naqi Fusion <span>⭐⭐⭐⭐⭐</span></h4><p>Great next-day tracking update structure. Friendly staff.</p></div>
+    <div class="review"><h4>SMART HOMES <span>⭐⭐⭐⭐⭐</span></h4><p>Heavy packages handled safely across far zones of Lahore seamlessly.</p></div>
+    <div class="review"><h4>fawad Pakwish <span>⭐⭐⭐⭐⭐</span></h4><p>Consistent delivery metrics. Genuine feedback logs shared clearly.</p></div>
+    <div class="review"><h4>Daily Deal <span>⭐⭐⭐⭐⭐</span></h4><p>Bohot responsive service hai flash-deals optimization orders ke liye.</p></div>
+    <div class="review"><h4>Easy Peasy <span>⭐⭐⭐⭐⭐</span></h4><p>True zero friction experience. No hidden transactional deduction fees.</p></div>
+    <div class="review"><h4>Organics <span>⭐⭐⭐⭐⭐</span></h4><p>Fresh organic item distribution processed quickly within proper timelines.</p></div>
+    <div class="review"><h4>Beautybuzz <span>⭐⭐⭐⭐⭐</span></h4><p>Highly responsive dispatch updates via direct automated platform setup.</p></div>
+    <div class="review"><h4>lavashak by kato <span>⭐⭐⭐⭐⭐</span></h4><p>Our signature sour candies reach buyers fresh and on time. Perfect logistics choice!</p></div>
+    <div class="review"><h4>Glowersteps <span>⭐⭐⭐⭐⭐</span></h4><p>Premium footwear packages handled beautifully without any parcel damage.</p></div>
+    <div class="review"><h4>kumari Pk <span>⭐⭐⭐⭐⭐</span></h4><p>Genuine attempt records provided. Highly transparent data metrics.</p></div>
+    <div class="review"><h4>MatchVet <span>⭐⭐⭐⭐⭐</span></h4><p>Consistent professional services provided uniformly across all operations.</p></div>
+    <div class="review"><h4>babyplanet pk <span>⭐⭐⭐⭐⭐</span></h4><p>Awesome service level consistency for recurring consumer items delivery.</p></div>
+    <div class="review"><h4>Prints and promises <span>⭐⭐⭐⭐⭐</span></h4><p>Delicate items printed smoothly and customized shipping done cleanly.</p></div>
+    <div class="review"><h4>Zarfoni Organic Foods <span>⭐⭐⭐⭐⭐</span></h4><p>Proper transit setup and secure billing workflow logs achieved smoothly.</p></div>
+    <div class="review"><h4>zain Universal Mart <span>⭐⭐⭐⭐⭐</span></h4><p>Excellent service ratio. Highly satisfied with daily bank settlement metrics.</p></div>
+  </div>
+</div>
+
+<div class="view-more-btn-wrapper">
+    <button class="view-more-btn" id="viewMoreReviewsBtn" onclick="toggleReviews()">View More Reviews <i class="fa-solid fa-chevron-down"></i></button>
+</div>
+</section>
+
+<!-- NEW STYLISH CONTACT SECTION -->
 <section class="container" data-aos="fade-up">
-<h2>Open Your COD Account</h2>
-<form id="codForm" style="max-width:700px;margin:auto;margin-top:20px;">
-<input type="text" name="company" placeholder="Company Name" required>
-<input type="text" name="officeAddress" placeholder="Office Address" required>
-<input type="text" name="authPerson" placeholder="Authorize Person Name" required>
-<input type="tel" name="authCell" placeholder="Authorize Person Cell#" required pattern="[0-9]{11}">
-<input type="email" name="email" placeholder="Email Address" required>
-<input type="text" name="cnic" placeholder="CNIC Number" required pattern="\d{5}-\d{7}-\d">
-<input type="text" name="iban" placeholder="IBAN" required pattern="[A-Z]{2}\d{2}[A-Z0-9]{1,30}"> 
-<input type="text" name="accountTitle" placeholder="Bank Account Title" required>
-<input type="text" name="bankName" placeholder="Bank Name" required>
-<input type="url" name="website" placeholder="Website" required>
-<input type="text" name="pickupAddress" placeholder="Pickup Address" required>
-<input type="text" name="dailyPickup" placeholder="Contact Person for Daily Pickup" required>
-<input type="text" name="ntn" placeholder="NTN" required>
-<p style="font-size:14px;color:#555;margin-top:5px;">Your information will remain confidential.</p>
-<button type="submit">Submit via WhatsApp</button>
-</form>
+    <div class="contact-section">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <!-- Contact Info Box List -->
+            <div class="contact-info-list">
+                <div class="contact-item-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>Phone Number</strong>
+                        <p>03298162144</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <strong>Email Address</strong>
+                        <p>business@maylogistics.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>Office Location</strong>
+                        <p>Lahore, Pakistan — <a href="https://maps.app.goo.gl/awnwgA8xSn5euaCFA" target="_blank">Open Google Maps</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Google Map Frame Container -->
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13606.31154562095!2d74.314127!3d31.509873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2spk!4v1710000000000!5m2!1sen!2spk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Stylish Terms and Condition Button Alignment -->
+        <div class="terms-btn-container">
+            <button class="terms-trigger-btn" onclick="openTermsModal()">
+                <i class="fa-solid fa-file-contract"></i> View Terms & Conditions
+            </button>
+        </div>
+    </div>
 </section>
 
-<!-- Contact Section -->
-<section class="container contact" data-aos="fade-up">
-<h2>Contact</h2>
-<p><b>Phone:</b> 03298162144</p>
-<p><b>Email:</b> business@maylogistics.com</p>
-<p><b>Office Location:</b> <a href="https://maps.app.goo.gl/awnwgA8xSn5euaCFA" target="_blank">View on Google Maps</a></p>
-</section>
+<!-- NEW COD ACCOUNT POPUP MODAL -->
+<div class="modal-overlay" id="accountModal" onclick="closeModalOutside(event)">
+    <div class="modal-box">
+        <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+        <h2 style="margin-bottom: 20px; font-size: 28px;">Open Your COD Account</h2>
+        <form id="codForm">
+            <input type="text" name="company" placeholder="Company Name" required>
+            <input type="text" name="officeAddress" placeholder="Office Address" required>
+            <input type="text" name="authPerson" placeholder="Authorize Person Name" required>
+            <input type="tel" name="authCell" placeholder="Authorize Person Cell# (e.g. 03001234567)" required pattern="[0-9]{11}">
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="text" name="cnic" placeholder="CNIC Number (e.g. 35201-1234567-1)" required pattern="^\d{5}-\d{7}-\d$">
+            <input type="text" name="iban" placeholder="IBAN (e.g. PK44MEZN0099010234567890)" required pattern="^PK\d{2}[A-Z0-9]{4}\d{16}$" title="Please enter a valid 24-character Pakistani IBAN starting with PK"> 
+            <input type="text" name="accountTitle" placeholder="Bank Account Title" required>
+            <input type="text" name="bankName" placeholder="Bank Name" required>
+            <input type="url" name="website" placeholder="Website URL" required>
+            <input type="text" name="pickupAddress" placeholder="Pickup Address" required>
+            <input type="text" name="dailyPickup" placeholder="Contact Person for Daily Pickup" required>
+            <input type="text" name="ntn" placeholder="NTN" required>
+            <p style="font-size:13px; color:#777; margin: 8px 0;">Your information will remain confidential.</p>
+            <button type="submit">Submit via WhatsApp</button>
+        </form>
+    </div>
+</div>
 
-<!-- WhatsApp Button -->
-<a class="whatsapp" href="https://wa.me/923298162144" target="_blank">WhatsApp</a>
+<!-- DYNAMIC TERMS & CONDITIONS MODAL POPUP -->
+<div class="modal-overlay" id="termsModal" onclick="closeTermsModalOutside(event)">
+    <div class="modal-box" style="max-width: 750px;">
+        <button class="close-modal" onclick="closeTermsModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="terms-content-box">
+            <h3>MAYL LOGISTICS</h3>
+            <p style="font-weight: 600; font-size: 15px; margin-bottom: 15px; border-bottom: 2px solid #00c896; padding-bottom: 8px;">Terms & Conditions</p>
+            <p style="font-size: 13.5px; font-style: italic; margin-bottom: 20px; color:#777;">By handing over any shipment to Mayl Logistics, the shipper agrees to the following Terms & Conditions.</p>
+            
+            <div class="terms-body-scroll">
+                <div class="terms-section-block">
+                    <h4>1. Consignment Acceptance</h4>
+                    <p>Mayl Logistics only accepts flyer / document-based lightweight shipments.</p>
+                    <ul>
+                        <li><strong>Accepted Limit:</strong> Maximum weight: Up to 500 grams to (5 kg) only</li>
+                        <li><strong>Not Accepted:</strong> Box parcels, Heavy weight items, Bulk cargo, Large shipments</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>2. Shipper Responsibility</h4>
+                    <p>The shipper confirms that:</p>
+                    <ul>
+                        <li>All shipment details are correct and complete</li>
+                        <li>Receiver information (name, address, phone) is accurate</li>
+                        <li>Parcel is properly packed for flyer handling</li>
+                        <li>Fragile items must be clearly declared</li>
+                    </ul>
+                    <p style="margin-top: 5px; font-weight: 600; color: #e74c3c;"><small>Important:</small> Undeclared fragile items are sent at sender’s own risk.</p>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>3. Rates & Charges</h4>
+                    <p>Mayl Logistics flyer delivery rates are as follows:</p>
+                    <ul>
+                        <li><strong>Local City Flyer Delivery:</strong> Rs. 140 – Rs. 250 (depending on weight)</li>
+                        <li><strong>Urgent / Same Day Flyer Service:</strong> Additional charges apply</li>
+                        <li><strong>COD Service Charges:</strong> As per agreed business contract</li>
+                    </ul>
+                    <p style="margin-top: 5px; font-size:13px; color: #666;">Rates may vary based on route, urgency, and service type.</p>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>4. Right of Inspection</h4>
+                    <p>Mayl Logistics reserves the right to inspect or open any shipment for security, legal compliance, or operational purposes.</p>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>5. Liability Policy</h4>
+                    <p>In case of loss or damage, Mayl Logistics liability is limited to:</p>
+                    <ul>
+                        <li>Maximum compensation: Cost Price on per shipment</li>
+                        <li>Or actual declared value (whichever is lower, if proof is provided)</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>6. Lost / Stolen Shipment Policy (Claim Condition)</h4>
+                    <p>In case of confirmed loss or theft during transit:</p>
+                    <ul>
+                        <li>Claim will be processed only after full investigation</li>
+                        <li>Claim amount will be based on cost price only (no profit included)</li>
+                        <li>Selling price, profit margin, or business loss will NOT be covered</li>
+                        <li>Valid purchase invoice or cost proof is required</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>7. Claim Duration & Procedure</h4>
+                    <ul>
+                        <li>Claim must be reported within 24–48 hours of incident</li>
+                        <li>Investigation period may take up to 10 weeks</li>
+                        <li>Claims submitted after 10 weeks will not be accepted</li>
+                        <li>Claims will be processed only after clearance of all dues</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>8. COD Policy</h4>
+                    <ul>
+                        <li>COD amount will be transferred as per agreed schedule</li>
+                        <li>Sender is responsible for correct COD declaration</li>
+                        <li>COD disputes must be reported immediately</li>
+                        <li>If COD parcel is returned, return charges will apply</li>
+                    </ul>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>9. Delivery Delays</h4>
+                    <p>Delays may occur due to weather conditions, road blockage or traffic issues, operational or technical issues, incorrect address or contact number, or force majeure situations. Mayl Logistics is not responsible for indirect or business losses due to delay.</p>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>10. Delivery Attempts</h4>
+                    <p>Up to 5 delivery attempts will be made. If delivery fails, the shipment may be returned to sender and return charges will apply.</p>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>11. Prohibited Items</h4>
+                    <p>Mayl Logistics does NOT accept cash or currency, jewelry, gold, silver, weapons or explosives, drugs or illegal substances, hazardous or flammable materials, live animals, perishable goods, or any illegal item under Pakistani law.</p>
+                </div>
+
+                <div class="terms-section-block">
+                    <h4>12. Privacy Policy</h4>
+                    <p>All customer data is kept confidential and used only for delivery and operational purposes.</p>
+                </div>
+
+                <div class="terms-section-block" style="background: rgba(0,200,150,0.05); padding: 10px; border-radius: 8px;">
+                    <h4>13. Acceptance of Terms</h4>
+                    <p style="font-weight: 500;">By using Mayl Logistics services, the shipper confirms that they have read, understood, and agreed to all Terms & Conditions mentioned above.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- INTERACTIVE WHATSAPP WIDGET -->
+<div class="wa-widget">
+    <div class="wa-popup" id="waPopup">
+        <div class="wa-header">
+            <div class="wa-avatar">M</div>
+            <div>
+                <div style="font-weight:600; font-size:15px;">Mayl Support</div>
+                <div class="wa-status"><span style="width:8px; height:8px; background:#25D366; border-radius:50%; display:inline-block;"></span> Online</div>
+            </div>
+        </div>
+        <div class="wa-body">
+            <p>Assalam-o-Alaikum! 👋</p>
+            <p style="margin-top:5px;">Mayl Logistics me khushamdeed. Hum aapki kya madad kar sakte hain?</p>
+            <a href="https://wa.me/923298162144?text=Hi%2C%20I%20want%20to%20know%20more%20about%20Mayl%20Logistics%20services." target="_blank" class="wa-chat-btn">Chat Shuru Karein</a>
+        </div>
+    </div>
+    <div class="wa-button" onclick="toggleWaPopup()">
+        <i class="fa-brands fa-whatsapp" style="font-size:22px;"></i> Live Support
+    </div>
+</div>
 
 <!-- Footer -->
 <footer>© 2026 Mayl Logistics | All Rights Reserved</footer>
@@ -317,14 +963,113 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 <script>
 AOS.init({duration:1000});
 
+// Toggle Brands Logic
+function toggleBrands() {
+    const moreBrands = document.getElementById('moreBrands');
+    const btn = document.getElementById('viewMoreBtn');
+    
+    if (moreBrands.style.display === 'block') {
+        moreBrands.style.display = 'none';
+        btn.innerHTML = 'View More Brands <i class="fa-solid fa-chevron-down"></i>';
+    } else {
+        moreBrands.style.display = 'block';
+        btn.innerHTML = 'View Less Brands <i class="fa-solid fa-chevron-up"></i>';
+    }
+}
+
+// Toggle Reviews Logic
+function toggleReviews() {
+    const moreReviews = document.getElementById('moreReviews');
+    const btn = document.getElementById('viewMoreReviewsBtn');
+    
+    if (moreReviews.style.display === 'block') {
+        moreReviews.style.display = 'none';
+        btn.innerHTML = 'View More Reviews <i class="fa-solid fa-chevron-down"></i>';
+    } else {
+        moreReviews.style.display = 'block';
+        btn.innerHTML = 'View Less Reviews <i class="fa-solid fa-chevron-up"></i>';
+    }
+}
+
+// Dark Mode Toggle Logic
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeToggle');
+    if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        btn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    } else {
+        body.setAttribute('data-theme', 'dark');
+        btn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }
+}
+
+// FAQ Accordion Logic
+function toggleFaq(element) {
+    const item = element.parentElement;
+    item.classList.toggle('active');
+}
+
+// WhatsApp Widget Popup Logic
+function toggleWaPopup() {
+    const popup = document.getElementById('waPopup');
+    if(popup.style.display === 'block') {
+        popup.style.display = 'none';
+    } else {
+        popup.style.display = 'block';
+    }
+}
+
+// COD Modal Toggle Functions
+function openModal() {
+    document.getElementById('accountModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeModal() {
+    document.getElementById('accountModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function closeModalOutside(event) {
+    if(event.target.id === 'accountModal') {
+        closeModal();
+    }
+}
+
+// Terms Modal Toggle Functions
+function openTermsModal() {
+    document.getElementById('termsModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTermsModal() {
+    document.getElementById('termsModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function closeTermsModalOutside(event) {
+    if(event.target.id === 'termsModal') {
+        closeTermsModal();
+    }
+}
+
 // COD Form WhatsApp submit
 document.getElementById('codForm').addEventListener('submit', function(e){
-e.preventDefault();
-let form = e.target;
-let message = `*COD Account Opening Request*\n\nCompany Name: ${form.company.value}\nOffice Address: ${form.officeAddress.value}\nAuthorize Person Name: ${form.authPerson.value}\nAuthorize Person Cell#: ${form.authCell.value}\nEmail Address: ${form.email.value}\nCNIC Number: ${form.cnic.value}\nIBAN: ${form.iban.value}\nBank Account Title: ${form.accountTitle.value}\nBank Name: ${form.bankName.value}\nWebsite: ${form.website.value}\nPickup Address: ${form.pickupAddress.value}\nContact Person for Daily Pickup: ${form.dailyPickup.value}\nNTN: ${form.ntn.value}`;
-let whatsappNumber = '923298162144';
-let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-window.open(url,'_blank');
+    e.preventDefault();
+    let form = e.target;
+    let message = `*COD Account Opening Request*\n\nCompany Name: ${form.company.value}\nOffice Address: ${form.officeAddress.value}\nAuthorize Person Name: ${form.authPerson.value}\nAuthorize Person Cell#: ${form.authCell.value}\nEmail Address: ${form.email.value}\nCNIC Number: ${form.cnic.value}\nIBAN: ${form.iban.value}\nBank Account Title: ${form.accountTitle.value}\nBank Name: ${form.bankName.value}\nWebsite: ${form.website.value}\nPickup Address: ${form.pickupAddress.value}\nContact Person for Daily Pickup: ${form.dailyPickup.value}\nNTN: ${form.ntn.value}`;
+    
+    let whatsappNumber = '923298162144';
+    let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    
+    let link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });
 </script>
 
