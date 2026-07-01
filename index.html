@@ -703,7 +703,7 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 
 <div class="calc-row">
   <span>Fixed Delivery Charges:</span>
-  <span>Rs. 145</span>
+  <span>Rs. 125</span>
 </div>
 <div class="calc-row">
   <span>Cash Holding Tax (2%):</span>
@@ -737,10 +737,10 @@ if(amount <= 0) {
     return;
 }
 
-let totalValueBeforeTax = amount + 145;
+let totalValueBeforeTax = amount + 125;
 let cashTax = totalValueBeforeTax * 0.02;
 let saleTax = totalValueBeforeTax * 0.02;
-let totalDeduction = 145 + cashTax + saleTax;
+let totalDeduction = 125 + cashTax + saleTax;
 let final = amount - totalDeduction;
 if (final < 0) final = 0;
 
@@ -754,7 +754,7 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 <div class="cards" style="margin-top:30px;">
 <div class="card" data-aos="zoom-in">
 <h3><span style="font-size:22px;">📦</span> Up to 1 KG</h3>
-<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 145 / Parcel</p>
+<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 125 / Parcel</p>
 <p>Includes standard courier services & 4% government tax.</p>
 </div>
 <div class="card" data-aos="zoom-in">
@@ -775,7 +775,7 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
       <i class="fa-solid fa-chevron-down"></i>
     </div>
     <div class="faq-answer">
-      Standard weight limit 1 KG tak hai jiske charges Rs. 145 hain. Agar aapka parcel 1 KG se upar hoga, to har extra KG par Rs. 35 additional charge kiye jayenge.
+      Standard weight limit 1 KG tak hai jiske charges Rs. 125 hain. Agar aapka parcel 1 KG se upar hoga, to har extra KG par Rs. 35 additional charge kiye jayenge.
     </div>
   </div>
   <div class="faq-item">
