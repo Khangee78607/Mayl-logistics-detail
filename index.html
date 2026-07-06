@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mayl Logistics</title>
-    <!-- Baaki ka code jo pehle se hai woh rehne dein -->
 
     <!-- Open Graph Meta Tags WhatsApp Preview ke liye -->
     <meta property="og:title" content="Mayl Logistics - Reliable Courier Service in Lahore" />
@@ -173,6 +172,26 @@ th{background:#203a43;color:white;}
 .more-reviews-container {
     display: none;
     margin-top: 25px;
+}
+
+/* GALLERY SECTION STYLING */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.gallery-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+    border: 1px solid var(--border-color);
+}
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
 
 /* STYLISH CONTACT SECTION */
@@ -862,6 +881,20 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 <div class="view-more-btn-wrapper">
     <button class="view-more-btn" id="viewMoreReviewsBtn" onclick="toggleReviews()">View More Reviews <i class="fa-solid fa-chevron-down"></i></button>
 </div>
+</section>
+
+<!-- NEW MEDIA GALLERY SECTION -->
+<section class="container" data-aos="fade-up">
+    <h2>Our Gallery & Media</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="Gemini_Generated_Image_.png" alt="Mayl Logistics Overview"></div>
+        <div class="gallery-item"><img src="Gemini_Generated_Image_ (1).png" alt="Mayl Logistics Highlights"></div>
+        <div class="gallery-item"><img src="Gemini_Generated_Image_ (2).png" alt="Mayl Logistics Features"></div>
+        <div class="gallery-item"><img src="Gemini_Generated_Image_ (3).png" alt="Mayl Logistics Services Banner"></div>
+        <div class="gallery-item"><img src="Gemini_Generated_Image_ (4).png" alt="Shipper Advice Dashboard"></div>
+        <div class="gallery-item"><img src="Gemini_Generated_Image_ (5).png" alt="Why Choose Mayl Logistics Flyers"></div>
+        <div class="gallery-item"><img src="Gemini_Generated_Image_ (6).jpg" alt="Mayl Logistics Solutions"></div>
+    </div>
 </section>
 
 <!-- NEW STYLISH CONTACT SECTION -->
