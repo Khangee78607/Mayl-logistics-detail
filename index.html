@@ -303,6 +303,7 @@ th{background:#203a43;color:white;}
     overflow: hidden;
     box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     border: 1px solid var(--border-color);
+    cursor: pointer;
 }
 .gallery-item img {
     width: 100%;
@@ -521,9 +522,107 @@ button:hover{background:#00b07f;}
 .wa-status { font-size: 12px; color: #25D366; display: flex; align-items: center; gap: 4px; }
 .wa-body { padding: 15px; font-size: 14px; color: var(--text-color); }
 .wa-chat-btn { display: block; background: #25D366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 10px; }
+
+/* OFFER INTRO POPUP */
+.offer-intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 20000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.offer-intro-box {
+    width: 100%;
+    max-width: 720px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+.offer-intro-box h2 { color: white; margin-bottom: 12px; }
+.offer-intro-box p { line-height: 1.6; margin-bottom: 18px; }
+.offer-intro-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.skip-btn {
+    background: white;
+    color: #c0392b;
+    width: auto;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+}
+.skip-btn:hover { background: #f1f1f1; }
+
+/* GALLERY LIGHTBOX */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 30000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.lightbox-content {
+    position: relative;
+    max-width: 92vw;
+    max-height: 92vh;
+}
+.lightbox-content img {
+    display: block;
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+.lightbox-close {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    color: #111;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.gallery-size-sm { max-width: 420px; }
+.gallery-size-md { max-width: 620px; }
+.gallery-size-lg { max-width: 800px; }
 </style>
 </head>
 <body>
+
+<div class="offer-intro-overlay" id="offerIntroOverlay">
+    <div class="offer-intro-box">
+        <h2>LIMITED TIME OFFER: Price Permanently Dropped!</h2>
+        <p>Ye popup page open hote hi sab se pehle show hoga. Jab tak aap skip nahi karte, yeh band nahi hoga.</p>
+        <div class="offer-intro-actions">
+            <button class="skip-btn" onclick="skipOfferIntro()">Skip</button>
+        </div>
+    </div>
+</div>
+
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox(event)">
+    <div class="lightbox-content" id="lightboxContent">
+        <button class="lightbox-close" onclick="closeLightboxManual()"><i class="fa-solid fa-xmark"></i></button>
+        <img id="lightboxImage" src="" alt="Gallery Image">
+    </div>
+</div>
 
 <!-- Dark Mode Toggle Button -->
 <button class="theme-switch" id="themeToggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
@@ -563,7 +662,6 @@ button:hover{background:#00b07f;}
             ⚠️ <b>Important Note:</b> Jo sellers <b>is week (Sunday tak)</b> upar diye gaye button ya nache form se account register kar ke kaam start karein ge, un ke liye yeh <b>Rs. 125 ka rate hamesha ke liye permanent</b> rahega. Baad mein register karne walon ko standard Rs. 145 rate hi milega. Jald az jald apna account open karein!
         </p>
 
-        <!-- Dynamic Timer Elements -->
         <div class="timer-container" id="weeklyTimer">
             <div class="timer-block"><span id="days">00</span><label>Days</label></div>
             <div class="timer-block"><span id="hours">00</span><label>Hours</label></div>
@@ -573,7 +671,6 @@ button:hover{background:#00b07f;}
     </div>
 </section>
 
-<!-- HURRY UP TOAST POPUP NOTIFICATION -->
 <div class="hurry-popup" id="hurryToast">
     <i class="fa-solid fa-bell-on"></i>
     <span>Hurry Up! Offer expires this Sunday midnight! ⏳</span>
@@ -613,8 +710,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
   <p style="text-align: center; max-width: 800px; margin: auto; margin-bottom: 40px; line-height: 1.6; color: #555;">
     Hum Lahore ke kone kone me orders safely aur on-time deliver karte hain. Tamam major housing societies, commercial hubs, door-daraz ke mofussil areas, aur Metrobus routes hamari active coverage list me shamil hain.[cite: 1]
   </p>
-
-  <!-- Major Highlights & Specific Routes (Always Visible) -->
   <h3 style="text-align: left; margin-bottom: 15px; font-size: 20px; border-left: 4px solid #00c896; padding-left: 10px;">Special Route Highlights</h3>
   <div class="area-grid" style="margin-bottom: 40px;">
     <div class="area-item" style="border-left: 4px solid #2bb673;" data-aos="zoom-in">WAPDA Town</div>
@@ -624,7 +719,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
     <div class="area-item" style="border-left: 4px solid #2bb673;" data-aos="zoom-in">Soay Asal & Ferozepur Road</div>
   </div>
 
-  <!-- Visible Main Areas List (Always Visible) -->
   <h3 style="text-align: left; margin-bottom: 15px; font-size: 20px; border-left: 4px solid #00c896; padding-left: 10px;">All Covered Lahore Territories</h3>
   <div class="area-grid">
     <div class="area-item" data-aos="zoom-in">Gulberg (I, II, III, IV, V)</div>
@@ -639,7 +733,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
     <div class="area-item" data-aos="zoom-in">Township (Sector A, B, C, D)</div>
   </div>
 
-  <!-- HIDDEN AREAS CONTAINER (View More Click karne par open hoga) -->
   <div id="moreAreasContainer" style="display: none; margin-top: 20px;">
     <div class="area-grid" style="margin-bottom: 40px;">
       <div class="area-item">Green Town</div>
@@ -678,7 +771,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
       <div class="area-item">Mustafabad Layout</div>
     </div>
 
-    <!-- Lahore Metrobus All 27 Stations Route Coverage -->
     <h3 style="text-align: left; margin-bottom: 15px; font-size: 20px; border-left: 4px solid #00c896; padding-left: 10px;">Other Delivery - Station</h3>
     <div class="area-grid">
       <div class="area-item" style="background: rgba(0, 200, 150, 0.05);">1. Gajjumata</div>
@@ -711,7 +803,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
     </div>
   </div>
 
-  <!-- Interactive Button Control -->
   <div class="view-more-btn-wrapper" style="text-align: center; margin-top: 30px;">
     <button class="view-more-btn" id="viewMoreAreasBtn" onclick="toggleAreas()">
       View More Areas <i class="fa-solid fa-chevron-down"></i>
@@ -734,7 +825,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
     }
   }
 </script>
-<!-- Performance Snapshot Section -->
 <section class="container" data-aos="fade-up">
 <h2>Our Performance Snapshot 📊</h2>
 <div class="cards" style="margin-top:30px;">
@@ -745,7 +835,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 </div>
 </section>
 
-<!-- Operational Process -->
 <section class="container">
 <h2 data-aos="fade-up">Our Operational Process</h2>
 <div class="process">
@@ -782,7 +871,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 </div>
 </section>
 
-<!-- Competitive Comparison -->
 <section class="container">
 <h2 data-aos="fade-up">Competitive Comparison</h2>
 <div class="table-wrapper" data-aos="zoom-in">
@@ -797,7 +885,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 </div>
 </section>
 
-<!-- Trial Offer Banner Option -->
 <section class="container" style="text-align: center;" data-aos="fade-up">
   <div style="background: linear-gradient(135deg, #0f2027, #203a43); color: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
     <h2 style="color: white; margin-bottom: 15px;">🎁 No-Risk Trial Offer</h2>
@@ -808,10 +895,8 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
   </div>
 </section>
 
-<!-- Brands Section -->
 <section class="container">
 <h2 data-aos="fade-up">Brands Working With Us</h2>
-<!-- Existing Brands -->
 <div class="brands">
   <div class="brand" data-aos="zoom-in">Baby Planet<br><a href="https://babyplanet.pk/" target="_blank">Visit Website</a></div>
   <div class="brand" data-aos="zoom-in">Floure<br><a href="https://fleuré.com/" target="_blank">Visit Website</a></div>
@@ -822,7 +907,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
   <div class="brand" data-aos="zoom-in">FW Organics<br><a href="https://fworganics.com/" target="_blank">Visit Website</a></div>
 </div>
 
-<!-- New Brands Container Hidden -->
 <div class="more-brands-container" id="moreBrands">
   <div class="brands" style="margin-top: 20px;">
     <div class="brand">Viga.Pk</div>
@@ -867,7 +951,6 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 </div>
 </section>
 
-<!-- Parcel Delivery Rate List & Calculator -->
 <section class="container" data-aos="fade-up">
 <h2>Parcel Delivery Rates</h2>
 <div class="card calc-container">
@@ -926,13 +1009,11 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 </script>
 
 <div class="cards" style="margin-top:30px;">
-<!-- UPDATED UP TO 1 KG PRICE CARD WITH DYNAMIC TIMER & PRICE DROP CUT -->
 <div class="card" data-aos="zoom-in" style="position: relative; overflow: hidden; border: 2px solid #e74c3c;">
 <h3><span style="font-size:22px;">📦</span> Up to 1 KG</h3>
 <p style="font-size:15px; text-decoration: line-through; color: #777; margin-bottom: 2px; font-weight: 500;">Rs. 145 / Parcel</p>
 <p style="font-size:24px; font-weight:700; color:#e74c3c; margin-top: 0;">Rs. 125 <span style="font-size: 14px; font-weight: 500; color: var(--text-color);">/ Parcel</span></p>
 
-<!-- Card Embedded Timer Layout -->
 <div class="card-timer-wrapper">
     <div class="card-limited-badge">Limited Timer Offer</div>
     <div class="card-timer-display" id="cardTimer">
@@ -954,7 +1035,6 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 </div>
 </section>
 
-<!-- FAQs Section -->
 <section class="container" data-aos="fade-up">
 <h2>Frequently Asked Questions 🤔</h2>
 <div class="faq-container">
@@ -997,17 +1077,14 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 </div>
 </section>
 
-<!-- Customer Reviews Section (With View More Feature) -->
 <section class="container">
 <h2>Customer Reviews</h2>
-<!-- Top 3 Default Reviews -->
 <div class="reviews">
 <div class="review" data-aos="flip-left"><h4>Baby Planet <span>⭐⭐⭐⭐⭐</span></h4><p>Delivery ratio bohat acha hai. Fake returns bilkul nahi. Time par payment mil jati hai.</p></div>
 <div class="review" data-aos="flip-left"><h4>Floure <span>⭐⭐⭐⭐⭐</span></h4><p>Payment daily milti hai. Best courier experience for premium apparel shipping.</p></div>
 <div class="review" data-aos="flip-left"><h4>The Herbal <span>⭐⭐⭐⭐⭐</span></h4><p>Shopify store ke liye perfect courier service. Customer handling and tracking system outstanding hai.</p></div>
 </div>
 
-<!-- Remaining Reviews Hidden by Default -->
 <div class="more-reviews-container" id="moreReviews">
   <div class="reviews">
     <div class="review"><h4>Elegant Savvy <span>⭐⭐⭐⭐⭐</span></h4><p>Bohot professional staff hai. Humare premium packages safely aur on-time deliver hote hain Lahore me.</p></div>
@@ -1053,26 +1130,23 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 </div>
 </section>
 
-<!-- NEW MEDIA GALLERY SECTION -->
 <section class="container" data-aos="fade-up">
     <h2>Our Gallery & Media</h2>
     <div class="gallery-grid">
-        <div class="gallery-item"><img src="Gemini_Generated_Image_.png" alt="Mayl Logistics Overview"></div>
-        <div class="gallery-item"><img src="Gemini_Generated_Image_ (1).png" alt="Mayl Logistics Highlights"></div>
-        <div class="gallery-item"><img src="Gemini_Generated_Image_ (2).png" alt="Mayl Logistics Features"></div>
-        <div class="gallery-item"><img src="Gemini_Generated_Image_ (3).png" alt="Mayl Logistics Services Banner"></div>
-        <div class="gallery-item"><img src="Gemini_Generated_Image_ (4).png" alt="Shipper Advice Dashboard"></div>
-        <div class="gallery-item"><img src="Gemini_Generated_Image_ (5).png" alt="Why Choose Mayl Logistics Flyers"></div>
-        <div class="gallery-item"><img src="Gemini_Generated_Image_ (6).png" alt="Mayl Logistics Solutions"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'medium')"><img src="Gemini_Generated_Image_.png" alt="Mayl Logistics Overview" data-size="md"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'large')"><img src="Gemini_Generated_Image_ (1).png" alt="Mayl Logistics Highlights" data-size="lg"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'medium')"><img src="Gemini_Generated_Image_ (2).png" alt="Mayl Logistics Features" data-size="md"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'small')"><img src="Gemini_Generated_Image_ (3).png" alt="Mayl Logistics Services Banner" data-size="sm"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'large')"><img src="Gemini_Generated_Image_ (4).png" alt="Shipper Advice Dashboard" data-size="lg"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'medium')"><img src="Gemini_Generated_Image_ (5).png" alt="Why Choose Mayl Logistics Flyers" data-size="md"></div>
+        <div class="gallery-item" onclick="openLightbox(this, 'large')"><img src="Gemini_Generated_Image_ (6).png" alt="Mayl Logistics Solutions" data-size="lg"></div>
     </div>
 </section>
 
-<!-- NEW STYLISH CONTACT SECTION -->
 <section class="container" data-aos="fade-up">
     <div class="contact-section">
         <h2>Get In Touch</h2>
         <div class="contact-grid">
-            <!-- Contact Info Box List -->
             <div class="contact-info-list">
                 <div class="contact-item-box">
                     <i class="fa-solid fa-phone"></i>
@@ -1099,13 +1173,11 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
                 </div>
             </div>
 
-            <!-- Dynamic Google Map Frame Container -->
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13606.31154562095!2d74.314127!3d31.509873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2spk!4v1710000000000!5m2!1sen!2spk" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
-        <!-- Stylish Terms and Condition Button Alignment -->
         <div class="terms-btn-container">
             <button class="terms-trigger-btn" onclick="openTermsModal()">
                 <i class="fa-solid fa-file-contract"></i> View Terms & Conditions
@@ -1114,7 +1186,6 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
     </div>
 </section>
 
-<!-- NEW COD ACCOUNT POPUP MODAL -->
 <div class="modal-overlay" id="accountModal" onclick="closeModalOutside(event)">
     <div class="modal-box">
         <button class="close-modal" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1139,7 +1210,6 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
     </div>
 </div>
 
-<!-- DYNAMIC TERMS & CONDITIONS MODAL POPUP -->
 <div class="modal-overlay" id="termsModal" onclick="closeTermsModalOutside(event)">
     <div class="modal-box" style="max-width: 750px;">
         <button class="close-modal" onclick="closeTermsModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -1255,7 +1325,6 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
     </div>
 </div>
 
-<!-- INTERACTIVE WHATSAPP WIDGET -->
 <div class="wa-widget">
     <div class="wa-popup" id="waPopup">
         <div class="wa-header">
@@ -1276,44 +1345,28 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
     </div>
 </div>
 
-<!-- Footer -->
 <footer>© 2026 Mayl Logistics | All Rights Reserved</footer>
 
-<!-- Scripts -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({duration:1000});
 
-// Dynamic Target Counter (Every Sunday Midnight Reset Engine)
 function updateWeeklyCountdown() {
     const now = new Date();
-    
-    // Target calculation logic: Agla near-most Sunday raat 23:59:59
     let targetSunday = new Date();
     targetSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
     targetSunday.setHours(23, 59, 59, 999);
-    
-    // Agar exact Sunday raat ki timing guzar chuki hai, to shift to next week's Sunday
-    if (targetSunday <= now) {
-        targetSunday.setDate(targetSunday.getDate() + 7);
-    }
-
+    if (targetSunday <= now) targetSunday.setDate(targetSunday.getDate() + 7);
     const diff = targetSunday - now;
-
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
-
     const formatTime = (time) => time < 10 ? "0" + time : time;
-
-    // Main top offer timer elements mapping
     document.getElementById("days").innerText = formatTime(d);
     document.getElementById("hours").innerText = formatTime(h);
     document.getElementById("minutes").innerText = formatTime(m);
     document.getElementById("seconds").innerText = formatTime(s);
-
-    // Rate details single card timer elements mapping
     document.getElementById("cardDays").innerText = formatTime(d);
     document.getElementById("cardHours").innerText = formatTime(h);
     document.getElementById("cardMinutes").innerText = formatTime(m);
@@ -1322,24 +1375,39 @@ function updateWeeklyCountdown() {
 setInterval(updateWeeklyCountdown, 1000);
 updateWeeklyCountdown();
 
-// Trigger Animated Hurry Up Toast Notification Layout
 window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         const toast = document.getElementById("hurryToast");
         toast.classList.add("show");
-        
-        // Auto hide after 6 seconds
         setTimeout(() => {
             toast.classList.remove("show");
         }, 6000);
-    }, 2500); // Trigger visibility smoothly after main entrance animations complete
+    }, 2500);
+
+    const offerIntroSeen = localStorage.getItem('offerIntroSeen');
+    if (!offerIntroSeen) {
+        document.getElementById('offerIntroOverlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    setInterval(() => {
+        const toast = document.getElementById("hurryToast");
+        toast.classList.add("show");
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+    }, 5000);
 });
 
-// Toggle Brands Logic
+function skipOfferIntro() {
+    document.getElementById('offerIntroOverlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    localStorage.setItem('offerIntroSeen', '1');
+}
+
 function toggleBrands() {
     const moreBrands = document.getElementById('moreBrands');
     const btn = document.getElementById('viewMoreBtn');
-    
     if (moreBrands.style.display === 'block') {
         moreBrands.style.display = 'none';
         btn.innerHTML = 'View More Brands <i class="fa-solid fa-chevron-down"></i>';
@@ -1349,11 +1417,9 @@ function toggleBrands() {
     }
 }
 
-// Toggle Reviews Logic
 function toggleReviews() {
     const moreReviews = document.getElementById('moreReviews');
     const btn = document.getElementById('viewMoreReviewsBtn');
-    
     if (moreReviews.style.display === 'block') {
         moreReviews.style.display = 'none';
         btn.innerHTML = 'View More Reviews <i class="fa-solid fa-chevron-down"></i>';
@@ -1363,7 +1429,6 @@ function toggleReviews() {
     }
 }
 
-// Dark Mode Toggle Logic
 function toggleTheme() {
     const body = document.body;
     const btn = document.getElementById('themeToggle');
@@ -1376,13 +1441,11 @@ function toggleTheme() {
     }
 }
 
-// FAQ Accordion Logic
 function toggleFaq(element) {
     const item = element.parentElement;
     item.classList.toggle('active');
 }
 
-// WhatsApp Widget Popup Logic
 function toggleWaPopup() {
     const popup = document.getElementById('waPopup');
     if(popup.style.display === 'block') {
@@ -1392,7 +1455,6 @@ function toggleWaPopup() {
     }
 }
 
-// COD Modal Toggle Functions
 function openModal() {
     document.getElementById('accountModal').style.display = 'flex';
     document.body.style.overflow = 'hidden'; 
@@ -1409,7 +1471,6 @@ function closeModalOutside(event) {
     }
 }
 
-// Terms Modal Toggle Functions
 function openTermsModal() {
     document.getElementById('termsModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -1426,7 +1487,35 @@ function closeTermsModalOutside(event) {
     }
 }
 
-// COD Form WhatsApp submit
+function openLightbox(element) {
+    const img = element.querySelector('img');
+    const lightbox = document.getElementById('lightboxOverlay');
+    const lightboxImg = document.getElementById('lightboxImage');
+    const content = document.getElementById('lightboxContent');
+    const size = img.getAttribute('data-size') || 'md';
+
+    lightboxImg.src = img.src;
+    content.className = 'lightbox-content';
+    if (size === 'sm') content.classList.add('gallery-size-sm');
+    if (size === 'md') content.classList.add('gallery-size-md');
+    if (size === 'lg') content.classList.add('gallery-size-lg');
+
+    lightbox.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(event) {
+    if (event.target.id === 'lightboxOverlay') {
+        document.getElementById('lightboxOverlay').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function closeLightboxManual() {
+    document.getElementById('lightboxOverlay').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
 document.getElementById('codForm').addEventListener('submit', function(e){
     e.preventDefault();
     let form = e.target;
