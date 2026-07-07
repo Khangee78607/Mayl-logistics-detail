@@ -164,9 +164,46 @@ h2{text-align:center;margin-bottom:40px;font-size:34px;color: var(--heading-colo
 .timer-block span { display: block; font-size: 24px; font-weight: 700; color: white; }
 .timer-block label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; }
 
+/* CARD SPECIAL INNER TIMER STYLING */
+.card-timer-wrapper {
+    margin: 15px 0 5px 0;
+    background: rgba(231, 76, 60, 0.08);
+    border: 1px dashed #e74c3c;
+    padding: 10px;
+    border-radius: 8px;
+}
+.card-limited-badge {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+.card-timer-display {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--heading-color);
+}
+.card-timer-display span {
+    background: #121824;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+    50% { transform: scale(1.03); }
     100% { transform: scale(1); }
 }
 
@@ -889,11 +926,26 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 </script>
 
 <div class="cards" style="margin-top:30px;">
-<div class="card" data-aos="zoom-in">
+<!-- UPDATED UP TO 1 KG PRICE CARD WITH DYNAMIC TIMER & PRICE DROP CUT -->
+<div class="card" data-aos="zoom-in" style="position: relative; overflow: hidden; border: 2px solid #e74c3c;">
 <h3><span style="font-size:22px;">📦</span> Up to 1 KG</h3>
-<p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 125 / Parcel</p>
-<p>Includes standard courier services & 4% government tax.</p>
+<p style="font-size:15px; text-decoration: line-through; color: #777; margin-bottom: 2px; font-weight: 500;">Rs. 145 / Parcel</p>
+<p style="font-size:24px; font-weight:700; color:#e74c3c; margin-top: 0;">Rs. 125 <span style="font-size: 14px; font-weight: 500; color: var(--text-color);">/ Parcel</span></p>
+
+<!-- Card Embedded Timer Layout -->
+<div class="card-timer-wrapper">
+    <div class="card-limited-badge">Limited Timer Offer</div>
+    <div class="card-timer-display" id="cardTimer">
+        <div><span id="cardDays">00</span> d</div>
+        <div><span id="cardHours">00</span> h</div>
+        <div><span id="cardMinutes">00</span> m</div>
+        <div><span id="cardSeconds">00</span> s</div>
+    </div>
 </div>
+
+<p style="font-size: 13px; margin-top: 5px;">Includes standard courier services & 4% government tax.</p>
+</div>
+
 <div class="card" data-aos="zoom-in">
 <h3><span style="font-size:22px;">📦</span> Above 1 KG</h3>
 <p style="font-size:20px;font-weight:600;color:#00c896;">Rs. 35 / KG (additional)</p>
@@ -959,7 +1011,7 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 <div class="more-reviews-container" id="moreReviews">
   <div class="reviews">
     <div class="review"><h4>Elegant Savvy <span>⭐⭐⭐⭐⭐</span></h4><p>Bohot professional staff hai. Humare premium packages safely aur on-time deliver hote hain Lahore me.</p></div>
-    <div class="review"><h4>Viga.Pk <span>⭐⭐⭐⭐⭐</span></h4><p>Return ratio kafi had tak manage ho gaya hai jab se inki 5 CNA/3 CNE service test ki hai. Recommended!</p></div>
+    <div class="review"><h4>Viga.Pk <span>⭐⭐⭐⭐⭐</span></h4><p>Return ratio kafi had tak manage ho gaya hai JavaScript se inki 5 CNA/3 CNE service test ki hai. Recommended!</p></div>
     <div class="review"><h4>Simaals Fashion <span>⭐⭐⭐⭐⭐</span></h4><p>Cash delivery reconciliation bohot transparent hai, koi hidden deduction nahi hoti.</p></div>
     <div class="review"><h4>chicGenzee <span>⭐⭐⭐⭐⭐</span></h4><p>Perfect shipping speed and customer updates are super accurate. Best for young e-commerce brands.</p></div>
     <div class="review"><h4>kiddies world <span>⭐⭐⭐⭐⭐</span></h4><p>Very safe handling for fragile and premium kids goods. Highly recommended courier.</p></div>
@@ -1253,10 +1305,19 @@ function updateWeeklyCountdown() {
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-    document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-    document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-    document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+    const formatTime = (time) => time < 10 ? "0" + time : time;
+
+    // Main top offer timer elements mapping
+    document.getElementById("days").innerText = formatTime(d);
+    document.getElementById("hours").innerText = formatTime(h);
+    document.getElementById("minutes").innerText = formatTime(m);
+    document.getElementById("seconds").innerText = formatTime(s);
+
+    // Rate details single card timer elements mapping
+    document.getElementById("cardDays").innerText = formatTime(d);
+    document.getElementById("cardHours").innerText = formatTime(h);
+    document.getElementById("cardMinutes").innerText = formatTime(m);
+    document.getElementById("cardSeconds").innerText = formatTime(s);
 }
 setInterval(updateWeeklyCountdown, 1000);
 updateWeeklyCountdown();
