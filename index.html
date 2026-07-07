@@ -118,6 +118,86 @@ h2{text-align:center;margin-bottom:40px;font-size:34px;color: var(--heading-colo
 .step{background: var(--card-bg);padding:20px;border-radius:10px;text-align:center;box-shadow:0 10px 20px rgba(0,0,0,0.06);}
 .step i{font-size:24px;margin-bottom:10px;color:#00c896;}
 
+/* OFFER BANNER & COUNTER */
+.offer-section {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(231,76,60,0.3);
+}
+.offer-section h2 { color: white; margin-bottom: 10px; font-size: 30px; }
+.offer-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+.offer-metric-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px 25px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.offer-metric-card .old-price { text-decoration: line-through; opacity: 0.8; font-size: 16px; }
+.offer-metric-card .new-price { font-size: 28px; font-weight: 700; color: #f1c40f; }
+
+/* TIMER CONTAINER */
+.timer-container {
+    display: inline-flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+.timer-block {
+    background: #121824;
+    color: #00c896;
+    padding: 10px 15px;
+    border-radius: 8px;
+    min-width: 70px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    animation: pulse 2s infinite ease-in-out;
+}
+.timer-block span { display: block; font-size: 24px; font-weight: 700; color: white; }
+.timer-block label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e1; }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* HURRY UP POPUP TOAST */
+.hurry-popup {
+    position: fixed;
+    bottom: 90px;
+    left: 25px;
+    background: #e74c3c;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(231,76,60,0.4);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+}
+.hurry-popup.show { transform: translateY(0); opacity: 1; }
+.hurry-popup i { animation: shake 0.5s infinite alternate; }
+
+@keyframes shake {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
+}
+
 /* FIXED RESPONSIVE TABLE WRAPPER */
 .table-wrapper { 
     width: 100%;
@@ -424,13 +504,51 @@ button:hover{background:#00b07f;}
 </div>
 </header>
 
+<!-- LIMITED TIME DYNAMIC PRICE DROP BANNER WITH WEEKLY RESET TIMER -->
+<section class="container" data-aos="fade-up">
+    <div class="offer-section">
+        <h2>⏳ LIMITED TIME OFFER: Price Permanently Dropped!</h2>
+        <p style="font-size: 15px; opacity: 0.9;">(Sirf is week register karne walon ke liye permanent rate setup)</p>
+        
+        <div class="offer-grid">
+            <div class="offer-metric-card">
+                <div class="old-price">Pehle: Rs. 145</div>
+                <div class="new-price">Ab Sirf: Rs. 125</div>
+                <p style="font-size: 12px; margin-top: 5px;">Per Parcel (Under 1 KG) 🔥</p>
+            </div>
+            <div class="offer-metric-card" style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="new-price" style="color: #ffffff; font-size: 24px;">Additional KG</div>
+                <p style="font-size: 18px; font-weight: 600; color: #f1c40f; margin-top: 5px;">Only Rs. 35</p>
+            </div>
+        </div>
+
+        <p style="max-width: 800px; margin: 15px auto; font-size: 14px; line-height: 1.6; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
+            ⚠️ <b>Important Note:</b> Jo sellers <b>is week (Sunday tak)</b> upar diye gaye button ya nache form se account register kar ke kaam start karein ge, un ke liye yeh <b>Rs. 125 ka rate hamesha ke liye permanent</b> rahega. Baad mein register karne walon ko standard Rs. 145 rate hi milega. Jald az jald apna account open karein!
+        </p>
+
+        <!-- Dynamic Timer Elements -->
+        <div class="timer-container" id="weeklyTimer">
+            <div class="timer-block"><span id="days">00</span><label>Days</label></div>
+            <div class="timer-block"><span id="hours">00</span><label>Hours</label></div>
+            <div class="timer-block"><span id="minutes">00</span><label>Mins</label></div>
+            <div class="timer-block"><span id="seconds">00</span><label>Secs</label></div>
+        </div>
+    </div>
+</section>
+
+<!-- HURRY UP TOAST POPUP NOTIFICATION -->
+<div class="hurry-popup" id="hurryToast">
+    <i class="fa-solid fa-bell-on"></i>
+    <span>Hurry Up! Offer expires this Sunday midnight! ⏳</span>
+</div>
+
 <!-- Company Profile -->
 <section class="container" data-aos="fade-up">
 <h2>Company Profile</h2>
 <p style="text-align:center;max-width:850px;margin:auto;">
-Mayl Logistics is a fully customized courier company operating across Lahore.
+Mayl Logistics is a fully customized courier company operating across Lahore.[cite: 1]
 We provide secure, fast and transparent delivery services while minimizing
-returns and maximizing delivery success. Specially designed for Shopify sellers, Facebook / Instagram sellers aur local eCommerce businesses.
+returns and maximizing delivery success. Specially designed for Shopify sellers, Facebook / Instagram sellers aur local eCommerce businesses.[cite: 1]
 </p>
 </section>
 
@@ -439,16 +557,16 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 <h2>Why Businesses Choose Us</h2>
 <div class="cards">
 <div class="card" data-aos="zoom-in">✔ <b>80%+ Proven Delivery Ratio</b> – Strong and consistent performance</div>
-<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns Policy</b> – Business protection guaranteed</div>
-<div class="card" data-aos="zoom-in">✔ <b>5 CNA / 3 CNE Attempts</b> – Customer tak har haal mein pohanchne ki koshish</div>
-<div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Complete Billing Transparency</b> – Clear & documented charges</div>
-<div class="card" data-aos="zoom-in">✔ <b>Dedicated Support Team</b> – Quick response & issue resolution</div>
-<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice Management</b> – Hum khud prepare & monitor karte hain</div>
-<div class="card" data-aos="zoom-in">✔ <b>Cash Handling with Proper Reconciliation</b></div>
-<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing.</div>
-<div class="card" data-aos="zoom-in">✔ <b>Flexible Payment Schedule</b> – Daily (above 10,000 PKR) & Weekly options</div>
-<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b>.</div>
+<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns Policy</b> – Business protection guaranteed[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>5 CNA / 3 CNE Attempts</b> – Customer tak har haal mein pohanchne ki koshish[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b>[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Complete Billing Transparency</b> – Clear & documented charges[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Dedicated Support Team</b> – Quick response & issue resolution[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice Management</b> – Hum khud prepare & monitor karte hain[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Cash Handling with Proper Reconciliation</b>[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing.[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Flexible Payment Schedule</b> – Daily (above 10,000 PKR) & Weekly options[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b>.[cite: 1]</div>
 </div>
 </section>
 
@@ -456,7 +574,7 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 <section class="container" data-aos="fade-up" style="margin-top: 40px; margin-bottom: 40px;">
   <h2 style="text-align: center; margin-bottom: 10px;">Our Lahore Service Areas 📍</h2>
   <p style="text-align: center; max-width: 800px; margin: auto; margin-bottom: 40px; line-height: 1.6; color: #555;">
-    Hum Lahore ke kone kone me orders safely aur on-time deliver karte hain. Tamam major housing societies, commercial hubs, door-daraz ke mofussil areas, aur Metrobus routes hamari active coverage list me shamil hain.
+    Hum Lahore ke kone kone me orders safely aur on-time deliver karte hain. Tamam major housing societies, commercial hubs, door-daraz ke mofussil areas, aur Metrobus routes hamari active coverage list me shamil hain.[cite: 1]
   </p>
 
   <!-- Major Highlights & Specific Routes (Always Visible) -->
@@ -1113,6 +1231,48 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({duration:1000});
+
+// Dynamic Target Counter (Every Sunday Midnight Reset Engine)
+function updateWeeklyCountdown() {
+    const now = new Date();
+    
+    // Target calculation logic: Agla near-most Sunday raat 23:59:59
+    let targetSunday = new Date();
+    targetSunday.setDate(now.getDate() + (7 - now.getDay()) % 7);
+    targetSunday.setHours(23, 59, 59, 999);
+    
+    // Agar exact Sunday raat ki timing guzar chuki hai, to shift to next week's Sunday
+    if (targetSunday <= now) {
+        targetSunday.setDate(targetSunday.getDate() + 7);
+    }
+
+    const diff = targetSunday - now;
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+    document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+    document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+    document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+}
+setInterval(updateWeeklyCountdown, 1000);
+updateWeeklyCountdown();
+
+// Trigger Animated Hurry Up Toast Notification Layout
+window.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        const toast = document.getElementById("hurryToast");
+        toast.classList.add("show");
+        
+        // Auto hide after 6 seconds
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 6000);
+    }, 2500); // Trigger visibility smoothly after main entrance animations complete
+});
 
 // Toggle Brands Logic
 function toggleBrands() {
