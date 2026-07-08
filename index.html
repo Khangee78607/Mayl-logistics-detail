@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mayl Logistics</title>
 
-    <!-- Open Graph Meta Tags WhatsApp Preview ke liye -->
     <meta property="og:title" content="Mayl Logistics - Reliable Courier Service in Lahore" />
     <meta property="og:description" content="Fast, secure, and transparent deliveries for Shopify & local eCommerce businesses in Lahore." />
     <meta property="og:url" content="https://mayl-logistics-detail.vercel.app/" />
@@ -13,7 +12,6 @@
     <meta property="og:image" content="https://mayl-logistics-detail.vercel.app/logo.jpeg" />
 
 
-<!-- Fonts & AOS CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -332,7 +330,7 @@ th{background:#203a43;color:white;}
     flex-direction: column;
     gap: 25px;
 }
-.contact-item-box {
+.contact-info-list .contact-item-box {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -515,13 +513,20 @@ button:hover{background:#00b07f;}
 
 /* INTERACTIVE WHATSAPP WIDGET */
 .wa-widget { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-.wa-button { background: #25D366; color: white; padding: 12px 22px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(37,211,102,0.4); cursor: pointer; }
+.wa-button { background: #25D366; color: white; padding: 12px 22px; border-radius: 50px; font-size: 16px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 25px rgba(37,211,102,0.4); cursor: pointer; animation: smoothBlink 2.5s infinite ease-in-out; }
 .wa-popup { position: absolute; bottom: 65px; right: 0; width: 300px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: none; overflow: hidden; border: 1px solid var(--border-color); }
 .wa-header { background: #0f2027; color: white; padding: 15px; display: flex; align-items: center; gap: 12px; }
 .wa-avatar { width: 40px; height: 40px; background: #00c896; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 .wa-status { font-size: 12px; color: #25D366; display: flex; align-items: center; gap: 4px; }
 .wa-body { padding: 15px; font-size: 14px; color: var(--text-color); }
 .wa-chat-btn { display: block; background: #25D366; color: white; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 10px; }
+
+/* LIVE SUPPORT SMOOTH BLINK ANIMATION */
+@keyframes smoothBlink {
+    0% { box-shadow: 0 10px 25px rgba(37,211,102,0.4); filter: brightness(1); }
+    50% { box-shadow: 0 10px 35px rgba(37,211,102,0.8); filter: brightness(1.15); }
+    100% { box-shadow: 0 10px 25px rgba(37,211,102,0.4); filter: brightness(1); }
+}
 
 /* OFFER INTRO POPUP */
 .offer-intro-overlay {
@@ -624,10 +629,8 @@ button:hover{background:#00b07f;}
     </div>
 </div>
 
-<!-- Dark Mode Toggle Button -->
 <button class="theme-switch" id="themeToggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
 
-<!-- HERO HEADER -->
 <header data-aos="fade-down">
 <div class="hero-content">
 <img src="./logo.jpeg" alt="Mayl Logistics Logo">
@@ -640,7 +643,6 @@ button:hover{background:#00b07f;}
 </div>
 </header>
 
-<!-- LIMITED TIME DYNAMIC PRICE DROP BANNER WITH WEEKLY RESET TIMER -->
 <section class="container" data-aos="fade-up">
     <div class="offer-section">
         <h2>⏳ LIMITED TIME OFFER: Price Permanently Dropped!</h2>
@@ -676,39 +678,36 @@ button:hover{background:#00b07f;}
     <span>Hurry Up! Offer expires this Sunday midnight! ⏳</span>
 </div>
 
-<!-- Company Profile -->
 <section class="container" data-aos="fade-up">
 <h2>Company Profile</h2>
 <p style="text-align:center;max-width:850px;margin:auto;">
-Mayl Logistics is a fully customized courier company operating across Lahore.[cite: 1]
+Mayl Logistics is a fully customized courier company operating across Lahore.
 We provide secure, fast and transparent delivery services while minimizing
-returns and maximizing delivery success. Specially designed for Shopify sellers, Facebook / Instagram sellers aur local eCommerce businesses.[cite: 1]
+returns and maximizing delivery success. Specially designed for Shopify sellers, Facebook / Instagram sellers aur local eCommerce businesses.
 </p>
 </section>
 
-<!-- Why Businesses Choose Us -->
 <section class="container" data-aos="fade-up">
 <h2>Why Businesses Choose Us</h2>
 <div class="cards">
 <div class="card" data-aos="zoom-in">✔ <b>80%+ Proven Delivery Ratio</b> – Strong and consistent performance</div>
-<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns Policy</b> – Business protection guaranteed[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>5 CNA / 3 CNE Attempts</b> – Customer tak har haal mein pohanchne ki koshish[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b>[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Complete Billing Transparency</b> – Clear & documented charges[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Dedicated Support Team</b> – Quick response & issue resolution[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice Management</b> – Hum khud prepare & monitor karte hain[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Cash Handling with Proper Reconciliation</b>[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing.[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Flexible Payment Schedule</b> – Daily (above 10,000 PKR) & Weekly options[cite: 1]</div>
-<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b>.[cite: 1]</div>
+<div class="card" data-aos="zoom-in">✔ <b>No Fake Returns Policy</b> – Business protection guaranteed</div>
+<div class="card" data-aos="zoom-in">✔ <b>5 CNA / 3 CNE Attempts</b> – Customer tak har haal mein pohanchne ki koshish</div>
+<div class="card" data-aos="zoom-in">✔ <b>Fast, Safe & On-Time Deliveries</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Complete Billing Transparency</b> – Clear & documented charges</div>
+<div class="card" data-aos="zoom-in">✔ <b>Dedicated Support Team</b> – Quick response & issue resolution</div>
+<div class="card" data-aos="zoom-in">✔ <b>Shipper Advice Management</b> – Hum khud prepare & monitor karte hain</div>
+<div class="card" data-aos="zoom-in">✔ <b>Cash Handling with Proper Reconciliation</b></div>
+<div class="card" data-aos="zoom-in">✔ <b>Shopify Integration Available</b> – Seamless order processing.</div>
+<div class="card" data-aos="zoom-in">✔ <b>Flexible Payment Schedule</b> – Daily (above 10,000 PKR) & Weekly options</div>
+<div class="card" data-aos="zoom-in">✔ <b>Auto Whatsapp Dispatch Message From Our System</b>.</div>
 </div>
 </section>
 
-<!-- Service Areas Section -->
 <section class="container" data-aos="fade-up" style="margin-top: 40px; margin-bottom: 40px;">
   <h2 style="text-align: center; margin-bottom: 10px;">Our Lahore Service Areas 📍</h2>
   <p style="text-align: center; max-width: 800px; margin: auto; margin-bottom: 40px; line-height: 1.6; color: #555;">
-    Hum Lahore ke kone kone me orders safely aur on-time deliver karte hain. Tamam major housing societies, commercial hubs, door-daraz ke mofussil areas, aur Metrobus routes hamari active coverage list me shamil hain.[cite: 1]
+    Hum Lahore ke kone kone me orders safely aur on-time deliver karte hain. Tamam major housing societies, commercial hubs, door-daraz ke mofussil areas, aur Metrobus routes hamari active coverage list me shamil hain.
   </p>
   <h3 style="text-align: left; margin-bottom: 15px; font-size: 20px; border-left: 4px solid #00c896; padding-left: 10px;">Special Route Highlights</h3>
   <div class="area-grid" style="margin-bottom: 40px;">
@@ -896,7 +895,7 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 </section>
 
 <section class="container">
-<h2 data-aos="fade-up">Brands Working With Us</h2>
+<h2>Brands Working With Us</h2>
 <div class="brands">
   <div class="brand" data-aos="zoom-in">Baby Planet<br><a href="https://babyplanet.pk/" target="_blank">Visit Website</a></div>
   <div class="brand" data-aos="zoom-in">Floure<br><a href="https://fleuré.com/" target="_blank">Visit Website</a></div>
@@ -958,9 +957,25 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 
 <input type="number" id="amountInput" placeholder="Enter COD Amount (e.g. 1000)" oninput="calcTotal()">
 
+<div style="margin-bottom: 12px;">
+  <label for="weightSelect" style="font-size: 14px; font-weight: 600; color: var(--text-color); display: block; margin-bottom: 5px;">Select Weight (KG):</label>
+  <select id="weightSelect" onchange="calcTotal()">
+    <option value="1" selected>1 KG</option>
+    <option value="2">2 KG (+Rs. 35)</option>
+    <option value="3">3 KG (+Rs. 70)</option>
+    <option value="4">4 KG (+Rs. 105)</option>
+    <option value="5">5 KG (+Rs. 140)</option>
+    <option value="6">6 KG (+Rs. 175)</option>
+    <option value="7">7 KG (+Rs. 210)</option>
+    <option value="8">8 KG (+Rs. 245)</option>
+    <option value="9">9 KG (+Rs. 280)</option>
+    <option value="10">10 KG (+Rs. 315)</option>
+  </select>
+</div>
+
 <div class="calc-row">
   <span>Fixed Delivery Charges:</span>
-  <span>Rs. 125</span>
+  <span>Rs. <span id="fixedDeliveryDisplay">125</span></span>
 </div>
 <div class="calc-row">
   <span>Cash Holding Tax (2%):</span>
@@ -985,6 +1000,11 @@ returns and maximizing delivery success. Specially designed for Shopify sellers,
 <script>
 function calcTotal(){
 let amount = parseFloat(document.getElementById('amountInput').value) || 0;
+let weight = parseInt(document.getElementById('weightSelect').value) || 1;
+
+// Calculation logic for added weight (+35 per KG after 1 KG)
+let fixedDelivery = 125 + ((weight - 1) * 35);
+document.getElementById('fixedDeliveryDisplay').innerText = fixedDelivery;
 
 if(amount <= 0) {
     document.getElementById('cashTax').innerText = "0.00";
@@ -994,10 +1014,10 @@ if(amount <= 0) {
     return;
 }
 
-let totalValueBeforeTax = amount + 125;
+let totalValueBeforeTax = amount + fixedDelivery;
 let cashTax = totalValueBeforeTax * 0.02;
 let saleTax = totalValueBeforeTax * 0.02;
-let totalDeduction = 125 + cashTax + saleTax;
+let totalDeduction = fixedDelivery + cashTax + saleTax;
 let final = amount - totalDeduction;
 if (final < 0) final = 0;
 
@@ -1237,7 +1257,7 @@ document.getElementById('finalTotal').innerText = final.toFixed(2);
                         <li>Parcel is properly packed for flyer handling</li>
                         <li>Fragile items must be clearly declared</li>
                     </ul>
-                    <p style="margin-top: 5px; font-weight: 600; color: #e74c3c;"><small>Important:</small> Undeclared fragile items are sent at sender’s own risk.</p>
+                    <p style="margin-top: 5px; font-weight: 600; color: #e74c3c;"><small>Important:</small> Undeclared fragile items are sent at sender's own risk.</p>
                 </div>
 
                 <div class="terms-section-block">
@@ -1376,6 +1396,7 @@ setInterval(updateWeeklyCountdown, 1000);
 updateWeeklyCountdown();
 
 window.addEventListener("DOMContentLoaded", () => {
+    // Initial display after 2.5 seconds
     setTimeout(() => {
         const toast = document.getElementById("hurryToast");
         toast.classList.add("show");
@@ -1390,13 +1411,14 @@ window.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = 'hidden';
     }
 
+    // Adjusted to loop exactly every 1 minute (60,000 milliseconds)
     setInterval(() => {
         const toast = document.getElementById("hurryToast");
         toast.classList.add("show");
         setTimeout(() => {
             toast.classList.remove("show");
-        }, 3000);
-    }, 5000);
+        }, 6000); // Popup stays visible for 6 seconds
+    }, 60000);
 });
 
 function skipOfferIntro() {
